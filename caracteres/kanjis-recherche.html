@@ -1,0 +1,374 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd" >
+<html>
+    
+<!-- Mirrored from jlptgo.com/caracteres/kanjis-recherche.php by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 05 Jan 2021 14:58:33 GMT -->
+<head>
+        <title>JLPT-Go Recherche de kanjis</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="keywords" content="JLPT-Go, kanji, kanjis, détail, prononciation, traits, lecture on, lecture kun, japonais" />
+	<meta name="description" content="Recherche d'un kanji suivant son nombre de traits, ses prononciations on et kun ou ses composants." />
+
+        <link rel="shortcut icon" type="image/x-icon" href="http://jlptgo.com/images/favicon.ico" />
+<link rel="stylesheet" type="text/css" href="http://jlptgo.com/css/general.css" media="all" />
+<link type="text/css" href="http://jlptgo.com/css/custom-theme/jquery-ui-1.8.9.custom.css" rel="stylesheet" />
+<link rel="stylesheet" type="text/css" href="http://jlptgo.com/css/BreadCrumb.css" media="all" />
+<link rel="stylesheet" type="text/css" href="http://jlptgo.com/css/tipsy.css" media="all" />
+
+<script type="text/javascript" src="http://jlptgo.com/js/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="http://jlptgo.com/js/jquery-ui-1.8.9.custom.min.js"></script>
+<script type="text/javascript" src="http://jlptgo.com/js/jquery.jBreadCrumb.1.1.js"></script>
+<script type="text/javascript" src="http://jlptgo.com/js/jquery.tipsy.js"></script>
+
+		<script>
+		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		  })(window,document,'script','../../www.google-analytics.com/analytics.js','ga');
+
+		  ga('create', 'UA-68690701-1', 'auto');
+		  ga('send', 'pageview');
+
+		</script>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+
+        // Accordéon
+        $("#accordion").accordion({
+            header: "h3",
+            autoHeight:false,
+            animated:false,
+            icons: {header: "ui-icon-circle-arrow-e",headerSelected: "ui-icon-circle-arrow-s"}
+        });
+
+        // Breadcrumb
+        $("#breadcrumbs").jBreadCrumb({easing:'swing'});
+    });
+</script>        
+        <script type="text/javascript">
+
+            function textReplacement(input){
+                var originalvalue = input.val();
+                input.focus( function(){
+                    if( $.trim(input.val()) == originalvalue ){ input.val('');
+                    $(this).removeClass("texte-defaut");}
+                });
+                input.blur( function(){
+                    if( $.trim(input.val()) == '' ){ input.val(originalvalue);
+                    $(this).addClass("texte-defaut");}
+                });
+            }
+  
+            $(document).ready(function() {
+
+                // Menus
+                $('#accordion').accordion('activate', 3);
+                $('#accordion').accordion('option', 'animated', 'slide');
+                $("#menu-kanjis").buttonset();
+                $('#menu-kanjis #4 span').addClass('ui-state-active');
+                textReplacement($('#kanji-recherche-input'));
+                $('#liste-composants input').button();
+
+                // Chargement image
+                $('img#chargement')
+                .hide()
+                .ajaxStart(function() {
+                    $(this).show();
+                })
+                .ajaxStop(function() {
+                    $(this).hide();
+                });
+
+                // Recherches
+                $('#bouton-recherche-kanji').live('click', function() {
+                    $('#resultat-recherche-kanji').html("");
+                    var kanji=$('#kanji-recherche-input').val();
+                    $.ajax({ type: "GET", url: "../traitements/controleur.php", data: ({action:"kanji-recherche",type:"kanji-recherche-input", kanji:kanji }),
+                        success: function(data){
+                            $('#resultat-recherche-kanji').html(data);
+                            $('.info-prononciation').tipsy({gravity: 'n'});}
+                    });
+                });
+                
+                $('#bouton-recherche-kun').live('click', function() {
+                 $('#resultat-recherche-kanji').html("");
+                    var prononciation=$('#kanji-recherche-kun option:selected').val();
+                    $.ajax({ type: "GET", url: "../traitements/controleur.php", data: ({action:"kanji-recherche",type:"kanji-recherche-prononciation", lecture:"kun", prononciation:prononciation }),
+                        success: function(data){
+                            $('#resultat-recherche-kanji').html(data);
+                            $('.info-prononciation').tipsy({gravity: 'n', html:true});}
+                    });
+                });
+
+                $('#bouton-recherche-on').live('click', function() {
+                 $('#resultat-recherche-kanji').html("");
+                    var prononciation=$('#kanji-recherche-on option:selected').val();
+                    $.ajax({ type: "GET", url: "../traitements/controleur.php", data: ({action:"kanji-recherche",type:"kanji-recherche-prononciation", lecture:"on", prononciation:prononciation }),
+                        success: function(data){
+                            $('#resultat-recherche-kanji').html(data);
+                            $('.info-prononciation').tipsy({gravity: 'n', html:true});}
+                    });
+                });
+
+                $('#bouton-recherche-traits').live('click', function() {
+                 $('#resultat-recherche-kanji').html("");
+                    var traits=$('#kanji-nb-traits option:selected').val();
+                    $.ajax({ type: "GET", url: "../traitements/controleur.php", data: ({action:"kanji-recherche",type:"kanji-recherche-traits", traits:traits }),
+                        success: function(data){
+                            $('#resultat-recherche-kanji').html(data);
+                            $('.info-prononciation').tipsy({gravity: 'n'});}
+                    });
+                });
+                
+                $('#liste-composants input').live('click', function() {
+                 $('#resultat-recherche-kanji').html("");
+                    var composant=$('input:radio[name=composants-courants]:checked').val();
+                    $.ajax({ type: "GET", url: "../traitements/controleur.php", data: ({action:"kanji-recherche",type:"kanji-recherche-elements", composant:composant }),
+                        success: function(data){
+                            $('#resultat-recherche-kanji').html(data);
+                            $('.info-prononciation').tipsy({gravity: 'n'});}
+                    });
+                });
+            });
+        </script>
+    </head>
+
+    <body>
+    <a href="#back-top" id="back-top"></a>
+
+    <div id="page-header">
+        <div class="page-header-1">
+            <div class="wrapper">
+                <div id="header">
+                        <div id="liens-header">
+                            <a id="lien-header-1" title ="Kanjis" class="lien-header ui-corner-all" href="kanjis.html"></a>
+                            <a id="lien-header-2" title ="Grammaire pour le JLPT" class="lien-header ui-corner-all" href="../grammaire/jlpt.html"></a>
+                            <a id="lien-header-3" title ="Grammaire pour le JLPT N4" class="lien-header ui-corner-all" href="../grammaire/jlpt-N4.html"></a>
+                            <a id="lien-header-4" title ="Kanjis pour le JLPT" class="lien-header ui-corner-all" href="kanjis-jlpt.html#ui-tabs-3"></a>
+                            <a id="lien-header-5" title ="Hiraganas" class="lien-header ui-corner-all" href="hiraganas.html"></a>
+                            <a id="lien-header-6" title ="Examen du JLPT" class="lien-header ui-corner-all" href="../autres/examen-jlpt.html"></a>
+                            <a id="lien-header-7" title ="Test de kanjis pour le JLPT N5" class="lien-header ui-corner-all" href="../exercices/kanjis-jlpt-N5.html"></a>
+                            <a id="lien-header-8" title ="Liens divers"  class="lien-header ui-corner-all" href="../autres/liens.html"></a>
+                            <a id="lien-header-9" title ="Conjugaison japonaise"  class="lien-header ui-corner-all" href="../grammaire/conjugaison.html"></a>
+                            <a id="lien-header-10" title ="Vocabulaire du JLPT"  class="lien-header ui-corner-all" href="../vocabulaire/jlpt.html"></a>
+                            <a id="lien-header-11" title ="Katakanas"  class="lien-header ui-corner-all" href="katakanas.html"></a>
+                        </div>
+                    <div id="logo"><a id="index-site" title="Index du site" href="../index-2.html"> </a></div>
+                    <div id="mail"><a id="contact-mail" title="Contact" href="../autres/contact.html"></a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="page-middle">
+        <div class="page-middle-1">
+            <div class="wrapper">
+                <div id="middle">
+                    <div id="left">
+                        <div id="accordion">
+
+                            <div>
+                                <h3><a href="#">Accueil | ホームページ</a></h3>
+                                <ul class="nav_links">
+                                    <li>
+                                        <a href="../index-2.html">Présentation | 紹介</a>
+                                    </li>
+                                    <li>
+                                        <a href="../autres/actualites.html">Actualités | ニュース</a>
+                                    </li>
+                                    <li>
+                                        <a href="../autres/examen-jlpt.html">JLPT | 日本語能力試験</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div>
+                                <h3><a href="#">Vocabulaire | 語彙</a></h3>
+                                <ul class="nav_links">
+                                    <li>
+                                        <a href="../vocabulaire/jlpt.html">JLPT | 日本語能力試験</a>
+                                    </li>
+                                    <li>
+                                        <a href="../vocabulaire/categories.html">Catégories | カテゴリー</a>
+                                    </li>
+                                    <li>
+                                        <a href="../vocabulaire/themes.html">Thèmes | 類題</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div>
+                                <h3><a href="#">Grammaire | 文法</a></h3>
+                                <ul class="nav_links">
+                                    <li>
+                                        <a href="../grammaire/jlpt.html">JLPT | 日本語能力試験</a>
+                                    </li>
+                                    <li>
+                                        <a href="../grammaire/conjugaison.html">Conjugaison | 活用</a>
+                                    </li>
+                                    <li>
+                                        <a href="../grammaire/index.html">Index | 索引</a>
+                                    </li>
+                                    <li>
+                                        <a href="../grammaire/categories.html">Catégories | カテゴリー</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div>
+                                <h3><a href="#">Caractères | 字</a></h3>
+                                <ul class="nav_links">
+                                    <li>
+                                        <a href="hiraganas.html">Hiraganas | 平仮名</a>
+                                    </li>
+                                    <li>
+                                        <a href="katakanas.html">Katakanas | 片仮名</a>
+                                    </li>
+                                    <li>
+                                        <a href="kanjis.html">Kanjis | 漢字</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div>
+                                <h3><a href="#">Chaque jour | 毎日</a></h3>
+                                <ul class="nav_links">
+                                    <li>
+                                        <a href="../chaque-jour/mots-jour-jlpt.html">10 mots | 単語</a>
+                                    </li>
+                                    <li>
+                                        <a href="../chaque-jour/kanjis-jour-jlpt.html">3 kanjis | 漢字</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div>
+                                <h3><a href="#">Exercices | 練習</a></h3>
+                                <ul class="nav_links">
+                                    <li>
+                                        <a href="../exercices/vocabulaire-jlpt.html">Vocabulaire | 語彙</a>
+                                    </li>
+                                    <li>
+                                        <a href="../exercices/kanjis-jlpt.html">Kanjis | 漢字</a>
+                                    </li>
+                                    <li>
+                                        <a href="../exercices/kanas.html">Kanas | 仮名</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div>
+                                <h3><a href="#">Autre | その他</a></h3>
+                                <ul class="nav_links">
+                                    <li>
+                                        <a href="../autres/contact.html">Contact | 連絡</a>
+                                    </li>
+                                    <li>
+                                        <a href="../autres/liens.html">Liens | リンク集</a>
+                                    </li>
+                                    <li>
+                                        <a href="../autres/statistiques.html">Statistiques | 統計</a>
+                                    </li>
+                                    <li>
+                                        <a href="../autres/telechargement.html">Fichiers | ダウンロード</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+
+                        </div>
+                    </div>
+        <div id="main">
+
+            <div id="breadcrumbs" class="breadCrumb module">
+                <ul>
+                    <li>
+                        <a href="../index-2.html">Home</a>
+                    </li>
+                    <li>
+                        Caractères
+                    </li>
+                    <li>
+                        <a href="kanjis.html">Kanjis</a>
+                    </li>
+                    <li>
+                        <a href="kanjis-recherche.html">Recherche</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div id="content">
+
+                <h1>Recherche de kanji | 漢字探索</h1>
+
+                <div id="menu-kanjis">
+    <a id="1" href="kanjis-primaires.html">Primaire</a>
+    <a id="2" href="kanjis-secondaires.html">Secondaire</a>
+    <a id="3" href="kanjis-jlpt.html">Niveau JLPT</a>
+    <a id="4" href="kanjis-recherche.html">Recherche</a>
+    <a id="5" href="kanjis-cles.html">Clés</a>
+</div>                
+                <div id="recherche-gauche">
+                    <h2>Kanji recherché</h2>
+
+                    <input  id="kanji-recherche-input" class="texte-defaut champs-recherche" value="字" name="kanji-recherche" maxlength="1" />
+                    <button id="bouton-recherche-kanji" class="bouton-recherche-kanji ui-corner-all">Rechercher</button>
+
+                    <h2>Par nombre de traits</h2>
+
+                    <div id="kanji-recherche-traits">
+                        <select id="kanji-nb-traits" class="champs-recherche"><option value= "1"> 1</option><option value= "2"> 2</option><option value= "3"> 3</option><option value= "4"> 4</option><option value= "5"> 5</option><option value= "6"> 6</option><option value= "7"> 7</option><option value= "8"> 8</option><option value= "9"> 9</option><option value= "10"> 10</option><option value= "11"> 11</option><option value= "12"> 12</option><option value= "13"> 13</option><option value= "14"> 14</option><option value= "15"> 15</option><option value= "16"> 16</option><option value= "17"> 17</option><option value= "18"> 18</option><option value= "19"> 19</option><option value= "20"> 20</option><option value= "21"> 21</option><option value= "22"> 22</option><option value= "23"> 23</option><option value= "29"> 29</option></select><button id="bouton-recherche-traits" class="bouton-recherche-kanji ui-corner-all">Rechercher</button>                    </div>
+
+                    <h2>Prononciation ON</h2>
+
+                    <div id="kanji-recherche-on">
+                         <select id="lecture-on" class="champs-recherche"><option value= "-"> -</option><option value= "a"> a</option><option value= "ai"> ai</option><option value= "aku"> aku</option><option value= "an"> an</option><option value= "atsu"> atsu</option><option value= "ba"> ba</option><option value= "bachi"> bachi</option><option value= "bai"> bai</option><option value= "baku"> baku</option><option value= "ban"> ban</option><option value= "batsu"> batsu</option><option value= "bei"> bei</option><option value= "ben"> ben</option><option value= "betsu"> betsu</option><option value= "bi"> bi</option><option value= "bin"> bin</option><option value= "bo"> bo</option><option value= "boku"> boku</option><option value= "bon"> bon</option><option value= "botsu"> botsu</option><option value= "bu"> bu</option><option value= "bun"> bun</option><option value= "butsu"> butsu</option><option value= "byaku"> byaku</option><option value= "byô"> byô</option><option value= "bô"> bô</option><option value= "cha"> cha</option><option value= "chaku"> chaku</option><option value= "chan"> chan</option><option value= "chi"> chi</option><option value= "chiku"> chiku</option><option value= "chin"> chin</option><option value= "chitsu"> chitsu</option><option value= "cho"> cho</option><option value= "choku"> choku</option><option value= "chô"> chô</option><option value= "chû"> chû</option><option value= "da"> da</option><option value= "dai"> dai</option><option value= "daku"> daku</option><option value= "dan"> dan</option><option value= "datsu"> datsu</option><option value= "dei"> dei</option><option value= "deki"> deki</option><option value= "den"> den</option><option value= "do"> do</option><option value= "doku"> doku</option><option value= "don"> don</option><option value= "dô"> dô</option><option value= "e"> e</option><option value= "ei"> ei</option><option value= "eki"> eki</option><option value= "en"> en</option><option value= "etsu"> etsu</option><option value= "fu"> fu</option><option value= "fuku"> fuku</option><option value= "fun"> fun</option><option value= "futsu"> futsu</option><option value= "fû"> fû</option><option value= "ga"> ga</option><option value= "gai"> gai</option><option value= "gaku"> gaku</option><option value= "gan"> gan</option><option value= "gatsu"> gatsu</option><option value= "ge"> ge</option><option value= "gei"> gei</option><option value= "geki"> geki</option><option value= "gen"> gen</option><option value= "getsu"> getsu</option><option value= "gi"> gi</option><option value= "gin"> gin</option><option value= "go"> go</option><option value= "goku"> goku</option><option value= "gon"> gon</option><option value= "gu"> gu</option><option value= "gun"> gun</option><option value= "gyaku"> gyaku</option><option value= "gyo"> gyo</option><option value= "gyoku"> gyoku</option><option value= "gyô"> gyô</option><option value= "gyû"> gyû</option><option value= "gô"> gô</option><option value= "gû"> gû</option><option value= "ha"> ha</option><option value= "hachi"> hachi</option><option value= "hai"> hai</option><option value= "haku"> haku</option><option value= "han"> han</option><option value= "hatsu"> hatsu</option><option value= "hei"> hei</option><option value= "heki"> heki</option><option value= "hen"> hen</option><option value= "hi"> hi</option><option value= "hin"> hin</option><option value= "hitsu"> hitsu</option><option value= "ho"> ho</option><option value= "hoku"> hoku</option><option value= "hon"> hon</option><option value= "hotsu"> hotsu</option><option value= "hyaku"> hyaku</option><option value= "hyô"> hyô</option><option value= "hô"> hô</option><option value= "i"> i</option><option value= "ichi"> ichi</option><option value= "iki"> iki</option><option value= "iku"> iku</option><option value= "in"> in</option><option value= "itsu"> itsu</option><option value= "iu"> iu</option><option value= "ja"> ja</option><option value= "jaku"> jaku</option><option value= "ji"> ji</option><option value= "jiki"> jiki</option><option value= "jiku"> jiku</option><option value= "jin"> jin</option><option value= "jitsu"> jitsu</option><option value= "jo"> jo</option><option value= "joku"> joku</option><option value= "ju"> ju</option><option value= "juku"> juku</option><option value= "jun"> jun</option><option value= "jutsu"> jutsu</option><option value= "jô"> jô</option><option value= "jû"> jû</option><option value= "ka"> ka</option><option value= "kai"> kai</option><option value= "kaku"> kaku</option><option value= "kan"> kan</option><option value= "katsu"> katsu</option><option value= "ke"> ke</option><option value= "kei"> kei</option><option value= "ken"> ken</option><option value= "ketsu"> ketsu</option><option value= "ki"> ki</option><option value= "kichi"> kichi</option><option value= "kiku"> kiku</option><option value= "kin"> kin</option><option value= "kitsu"> kitsu</option><option value= "ko"> ko</option><option value= "koku"> koku</option><option value= "kon"> kon</option><option value= "kotsu"> kotsu</option><option value= "ku"> ku</option><option value= "kun"> kun</option><option value= "kutsu"> kutsu</option><option value= "kyaku"> kyaku</option><option value= "kyo"> kyo</option><option value= "kyoku"> kyoku</option><option value= "kyô"> kyô</option><option value= "kyû"> kyû</option><option value= "kô"> kô</option><option value= "kû"> kû</option><option value= "ma"> ma</option><option value= "maa"> maa</option><option value= "mai"> mai</option><option value= "maku"> maku</option><option value= "man"> man</option><option value= "matsu"> matsu</option><option value= "mei"> mei</option><option value= "men"> men</option><option value= "metsu"> metsu</option><option value= "mi"> mi</option><option value= "min"> min</option><option value= "mitsu"> mitsu</option><option value= "mo"> mo</option><option value= "moku"> moku</option><option value= "mon"> mon</option><option value= "motsu"> motsu</option><option value= "mu"> mu</option><option value= "myaku"> myaku</option><option value= "myô"> myô</option><option value= "mô"> mô</option><option value= "na"> na</option><option value= "nai"> nai</option><option value= "nan"> nan</option><option value= "nei"> nei</option><option value= "nen"> nen</option><option value= "netsu"> netsu</option><option value= "ni"> ni</option><option value= "nichi"> nichi</option><option value= "niku"> niku</option><option value= "nin"> nin</option><option value= "non"> non</option><option value= "nya"> nya</option><option value= "nyaku"> nyaku</option><option value= "nyo"> nyo</option><option value= "nyô"> nyô</option><option value= "nyû"> nyû</option><option value= "nô"> nô</option><option value= "oku"> oku</option><option value= "on"> on</option><option value= "otsu"> otsu</option><option value= "ra"> ra</option><option value= "rai"> rai</option><option value= "raku"> raku</option><option value= "ran"> ran</option><option value= "ratsu"> ratsu</option><option value= "rei"> rei</option><option value= "reki"> reki</option><option value= "rekki"> rekki</option><option value= "ren"> ren</option><option value= "retsu"> retsu</option><option value= "ri"> ri</option><option value= "rii"> rii</option><option value= "riki"> riki</option><option value= "riku"> riku</option><option value= "rin"> rin</option><option value= "ritsu"> ritsu</option><option value= "ro"> ro</option><option value= "roku"> roku</option><option value= "ron"> ron</option><option value= "ru"> ru</option><option value= "rui"> rui</option><option value= "ryaku"> ryaku</option><option value= "ryo"> ryo</option><option value= "ryoku"> ryoku</option><option value= "ryuku"> ryuku</option><option value= "ryô"> ryô</option><option value= "ryû"> ryû</option><option value= "rô"> rô</option><option value= "sa"> sa</option><option value= "sai"> sai</option><option value= "saku"> saku</option><option value= "san"> san</option><option value= "satsu"> satsu</option><option value= "se"> se</option><option value= "sechi"> sechi</option><option value= "sei"> sei</option><option value= "seki"> seki</option><option value= "sen"> sen</option><option value= "sento"> sento</option><option value= "setsu"> setsu</option><option value= "sha"> sha</option><option value= "shaku"> shaku</option><option value= "shan"> shan</option><option value= "shi"> shi</option><option value= "shichi"> shichi</option><option value= "shiki"> shiki</option><option value= "shin"> shin</option><option value= "shitsu"> shitsu</option><option value= "sho"> sho</option><option value= "shoku"> shoku</option><option value= "shu"> shu</option><option value= "shuku"> shuku</option><option value= "shun"> shun</option><option value= "shutsu"> shutsu</option><option value= "shô"> shô</option><option value= "shû"> shû</option><option value= "so"> so</option><option value= "soku"> soku</option><option value= "son"> son</option><option value= "sotsu"> sotsu</option><option value= "su"> su</option><option value= "sui"> sui</option><option value= "suku"> suku</option><option value= "sun"> sun</option><option value= "sô"> sô</option><option value= "sû"> sû</option><option value= "ta"> ta</option><option value= "tai"> tai</option><option value= "taku"> taku</option><option value= "tan"> tan</option><option value= "tatsu"> tatsu</option><option value= "te"> te</option><option value= "tei"> tei</option><option value= "teki"> teki</option><option value= "ten"> ten</option><option value= "tetsu"> tetsu</option><option value= "to"> to</option><option value= "toku"> toku</option><option value= "ton"> ton</option><option value= "totsu"> totsu</option><option value= "tsu"> tsu</option><option value= "tsui"> tsui</option><option value= "tsû"> tsû</option><option value= "tô"> tô</option><option value= "u"> u</option><option value= "un"> un</option><option value= "utsu"> utsu</option><option value= "wa"> wa</option><option value= "wai"> wai</option><option value= "waku"> waku</option><option value= "wan"> wan</option><option value= "ya"> ya</option><option value= "yaku"> yaku</option><option value= "yoku"> yoku</option><option value= "yu"> yu</option><option value= "yui"> yui</option><option value= "yô"> yô</option><option value= "yû"> yû</option><option value= "za"> za</option><option value= "zai"> zai</option><option value= "zan"> zan</option><option value= "zatsu"> zatsu</option><option value= "ze"> ze</option><option value= "zei"> zei</option><option value= "zen"> zen</option><option value= "zetsu"> zetsu</option><option value= "zoku"> zoku</option><option value= "zon"> zon</option><option value= "zu"> zu</option><option value= "zui"> zui</option><option value= "zô"> zô</option><option value= "ô"> ô</option></select><button id="bouton-recherche-on" class="bouton-recherche-kanji ui-corner-all">Rechercher</button>                    </div>
+
+                    <h2>Prononciation KUN</h2>
+
+                    <div id="kanji-recherche-kun">
+                         <select id="lecture-kun" class="champs-recherche"><option value= "-">-</option><option value= "a"> a</option><option value= "ka"> ka</option><option value= "sa"> sa</option><option value= "ta"> ta</option><option value= "na"> na</option><option value= "ha"> ha</option><option value= "ma"> ma</option><option value= "ya"> ya</option><option value= "wa"> wa</option><option value= "i"> i</option><option value= "ki"> ki</option><option value= "shi"> shi</option><option value= "chi"> chi</option><option value= "ni"> ni</option><option value= "mi"> mi</option><option value= "u"> u</option><option value= "ku"> ku</option><option value= "su"> su</option><option value= "tsu"> tsu</option><option value= "nu"> nu</option><option value= "fu"> fu</option><option value= "mu"> mu</option><option value= "yu"> yu</option><option value= "e"> e</option><option value= "ke"> ke</option><option value= "se"> se</option><option value= "te"> te</option><option value= "ne"> ne</option><option value= "he"> he</option><option value= "me"> me</option><option value= "o"> o</option><option value= "ko"> ko</option><option value= "so"> so</option><option value= "to"> to</option><option value= "no"> no</option><option value= "ho"> ho</option><option value= "mo"> mo</option><option value= "yo"> yo</option><option value= "ro"> ro</option><option value= "n"> n</option><option value= "ga"> ga</option><option value= "da"> da</option><option value= "ba"> ba</option><option value= "gi"> gi</option><option value= "gu"> gu</option><option value= "zu"> zu</option><option value= "bu"> bu</option><option value= "be"> be</option><option value= "go"> go</option><option value= "do"> do</option><option value= "bo"> bo</option><option value= "chu"> chu</option></select><button id="bouton-recherche-kun" class="bouton-recherche-kanji ui-corner-all">Rechercher</button>                    </div>
+                </div>
+                
+                <div id="recherche-droite">
+                    <h2>Elément du kanji</h2>
+
+                    <div id="kanji-recherche-elements">
+                         <div id="liste-composants"><input type='radio' id='一' value='一' name='composants-courants' /><label for='一'>一</label><input type='radio' id='乙' value='乙' name='composants-courants' /><label for='乙'>乙</label><input type='radio' id='ト' value='ト' name='composants-courants' /><label for='ト'>ト</label><input type='radio' id='口' value='口' name='composants-courants' /><label for='口'>口</label><input type='radio' id='丨' value='丨' name='composants-courants' /><label for='丨'>丨</label><input type='radio' id='丿' value='丿' name='composants-courants' /><label for='丿'>丿</label><input type='radio' id='二' value='二' name='composants-courants' /><label for='二'>二</label><input type='radio' id='人' value='人' name='composants-courants' /><label for='人'>人</label><input type='radio' id='木' value='木' name='composants-courants' /><label for='木'>木</label><input type='radio' id='八' value='八' name='composants-courants' /><label for='八'>八</label><input type='radio' id='亠' value='亠' name='composants-courants' /><label for='亠'>亠</label><input type='radio' id='冂' value='冂' name='composants-courants' /><label for='冂'>冂</label><input type='radio' id='山' value='山' name='composants-courants' /><label for='山'>山</label><input type='radio' id='十' value='十' name='composants-courants' /><label for='十'>十</label><input type='radio' id='夕' value='夕' name='composants-courants' /><label for='夕'>夕</label><input type='radio' id='囗' value='囗' name='composants-courants' /><label for='囗'>囗</label><input type='radio' id='大' value='大' name='composants-courants' /><label for='大'>大</label><input type='radio' id='宀' value='宀' name='composants-courants' /><label for='宀'>宀</label><input type='radio' id='子' value='子' name='composants-courants' /><label for='子'>子</label><input type='radio' id='つ' value='つ' name='composants-courants' /><label for='つ'>つ</label><input type='radio' id='冖' value='冖' name='composants-courants' /><label for='冖'>冖</label><input type='radio' id='工' value='工' name='composants-courants' /><label for='工'>工</label><input type='radio' id='干' value='干' name='composants-courants' /><label for='干'>干</label><input type='radio' id='乂' value='乂' name='composants-courants' /><label for='乂'>乂</label><input type='radio' id='日' value='日' name='composants-courants' /><label for='日'>日</label><input type='radio' id='寸' value='寸' name='composants-courants' /><label for='寸'>寸</label><input type='radio' id='止' value='止' name='composants-courants' /><label for='止'>止</label><input type='radio' id='丶' value='丶' name='composants-courants' /><label for='丶'>丶</label><input type='radio' id='王' value='王' name='composants-courants' /><label for='王'>王</label><input type='radio' id='田' value='田' name='composants-courants' /><label for='田'>田</label><input type='radio' id='力' value='力' name='composants-courants' /><label for='力'>力</label><input type='radio' id='丁' value='丁' name='composants-courants' /><label for='丁'>丁</label><input type='radio' id='白' value='白' name='composants-courants' /><label for='白'>白</label><input type='radio' id='穴' value='穴' name='composants-courants' /><label for='穴'>穴</label><input type='radio' id='艹' value='艹' name='composants-courants' /><label for='艹'>艹</label><input type='radio' id='早' value='早' name='composants-courants' /><label for='早'>早</label><input type='radio' id='中' value='中' name='composants-courants' /><label for='中'>中</label><input type='radio' id='目' value='目' name='composants-courants' /><label for='目'>目</label><input type='radio' id='土' value='土' name='composants-courants' /><label for='土'>土</label><input type='radio' id='月' value='月' name='composants-courants' /><label for='月'>月</label><input type='radio' id='立' value='立' name='composants-courants' /><label for='立'>立</label><input type='radio' id='小' value='小' name='composants-courants' /><label for='小'>小</label><input type='radio' id='ム' value='ム' name='composants-courants' /><label for='ム'>ム</label><input type='radio' id='夂' value='夂' name='composants-courants' /><label for='夂'>夂</label><input type='radio' id='冫' value='冫' name='composants-courants' /><label for='冫'>冫</label><input type='radio' id='刀' value='刀' name='composants-courants' /><label for='刀'>刀</label><input type='radio' id='匕' value='匕' name='composants-courants' /><label for='匕'>匕</label><input type='radio' id='厂' value='厂' name='composants-courants' /><label for='厂'>厂</label><input type='radio' id='又' value='又' name='composants-courants' /><label for='又'>又</label><input type='radio' id='玉' value='玉' name='composants-courants' /><label for='玉'>玉</label><input type='radio' id='女' value='女' name='composants-courants' /><label for='女'>女</label><input type='radio' id='豕' value='豕' name='composants-courants' /><label for='豕'>豕</label><input type='radio' id='石' value='石' name='composants-courants' /><label for='石'>石</label><input type='radio' id='巾' value='巾' name='composants-courants' /><label for='巾'>巾</label><input type='radio' id='广' value='广' name='composants-courants' /><label for='广'>广</label><input type='radio' id='弓' value='弓' name='composants-courants' /><label for='弓'>弓</label><input type='radio' id='虫' value='虫' name='composants-courants' /><label for='虫'>虫</label><input type='radio' id='彑' value='彑' name='composants-courants' /><label for='彑'>彑</label><input type='radio' id='彡' value='彡' name='composants-courants' /><label for='彡'>彡</label><input type='radio' id='彳' value='彳' name='composants-courants' /><label for='彳'>彳</label><input type='radio' id='幺' value='幺' name='composants-courants' /><label for='幺'>幺</label><input type='radio' id='心' value='心' name='composants-courants' /><label for='心'>心</label><input type='radio' id='手' value='手' name='composants-courants' /><label for='手'>手</label><input type='radio' id='攵' value='攵' name='composants-courants' /><label for='攵'>攵</label><input type='radio' id='米' value='米' name='composants-courants' /><label for='米'>米</label><input type='radio' id='斤' value='斤' name='composants-courants' /><label for='斤'>斤</label><input type='radio' id='三' value='三' name='composants-courants' /><label for='三'>三</label><input type='radio' id='尺' value='尺' name='composants-courants' /><label for='尺'>尺</label><input type='radio' id='旦' value='旦' name='composants-courants' /><label for='旦'>旦</label><input type='radio' id='寺' value='寺' name='composants-courants' /><label for='寺'>寺</label><input type='radio' id='羽' value='羽' name='composants-courants' /><label for='羽'>羽</label><input type='radio' id='隹' value='隹' name='composants-courants' /><label for='隹'>隹</label><input type='radio' id='肉' value='肉' name='composants-courants' /><label for='肉'>肉</label><input type='radio' id='欠' value='欠' name='composants-courants' /><label for='欠'>欠</label><input type='radio' id='少' value='少' name='composants-courants' /><label for='少'>少</label><input type='radio' id='水' value='水' name='composants-courants' /><label for='水'>水</label><input type='radio' id='火' value='火' name='composants-courants' /><label for='火'>火</label><input type='radio' id='里' value='里' name='composants-courants' /><label for='里'>里</label><input type='radio' id='由' value='由' name='composants-courants' /><label for='由'>由</label><input type='radio' id='矢' value='矢' name='composants-courants' /><label for='矢'>矢</label><input type='radio' id='示' value='示' name='composants-courants' /><label for='示'>示</label><input type='radio' id='禾' value='禾' name='composants-courants' /><label for='禾'>禾</label><input type='radio' id='竹' value='竹' name='composants-courants' /><label for='竹'>竹</label><input type='radio' id='廾' value='廾' name='composants-courants' /><label for='廾'>廾</label><input type='radio' id='糸' value='糸' name='composants-courants' /><label for='糸'>糸</label><input type='radio' id='且' value='且' name='composants-courants' /><label for='且'>且</label><input type='radio' id='門' value='門' name='composants-courants' /><label for='門'>門</label><input type='radio' id='耳' value='耳' name='composants-courants' /><label for='耳'>耳</label><input type='radio' id='舟' value='舟' name='composants-courants' /><label for='舟'>舟</label><input type='radio' id='勹' value='勹' name='composants-courants' /><label for='勹'>勹</label><input type='radio' id='襾' value='襾' name='composants-courants' /><label for='襾'>襾</label><input type='radio' id='見' value='見' name='composants-courants' /><label for='見'>見</label><input type='radio' id='言' value='言' name='composants-courants' /><label for='言'>言</label><input type='radio' id='己' value='己' name='composants-courants' /><label for='己'>己</label><input type='radio' id='网' value='网' name='composants-courants' /><label for='网'>网</label><input type='radio' id='貝' value='貝' name='composants-courants' /><label for='貝'>貝</label><input type='radio' id='辶' value='辶' name='composants-courants' /><label for='辶'>辶</label><input type='radio' id='雨' value='雨' name='composants-courants' /><label for='雨'>雨</label><input type='radio' id='豆' value='豆' name='composants-courants' /><label for='豆'>豆</label><input type='radio' id='頁' value='頁' name='composants-courants' /><label for='頁'>頁</label><input type='radio' id='爪' value='爪' name='composants-courants' /><label for='爪'>爪</label><input type='radio' id='卩' value='卩' name='composants-courants' /><label for='卩'>卩</label><input type='radio' id='反' value='反' name='composants-courants' /><label for='反'>反</label><input type='radio' id='各' value='各' name='composants-courants' /><label for='各'>各</label><input type='radio' id='尸' value='尸' name='composants-courants' /><label for='尸'>尸</label><input type='radio' id='巛' value='巛' name='composants-courants' /><label for='巛'>巛</label><input type='radio' id='車' value='車' name='composants-courants' /><label for='車'>車</label><input type='radio' id='殳' value='殳' name='composants-courants' /><label for='殳'>殳</label><input type='radio' id='戸' value='戸' name='composants-courants' /><label for='戸'>戸</label><input type='radio' id='方' value='方' name='composants-courants' /><label for='方'>方</label><input type='radio' id='正' value='正' name='composants-courants' /><label for='正'>正</label><input type='radio' id='者' value='者' name='composants-courants' /><label for='者'>者</label><input type='radio' id='艮' value='艮' name='composants-courants' /><label for='艮'>艮</label><input type='radio' id='羊' value='羊' name='composants-courants' /><label for='羊'>羊</label><input type='radio' id='皿' value='皿' name='composants-courants' /><label for='皿'>皿</label><input type='radio' id='夫' value='夫' name='composants-courants' /><label for='夫'>夫</label><input type='radio' id='牛' value='牛' name='composants-courants' /><label for='牛'>牛</label><input type='radio' id='疒' value='疒' name='composants-courants' /><label for='疒'>疒</label><input type='radio' id='古' value='古' name='composants-courants' /><label for='古'>古</label><input type='radio' id='衣' value='衣' name='composants-courants' /><label for='衣'>衣</label><input type='radio' id='足' value='足' name='composants-courants' /><label for='足'>足</label><input type='radio' id='邑' value='邑' name='composants-courants' /><label for='邑'>邑</label><input type='radio' id='酉' value='酉' name='composants-courants' /><label for='酉'>酉</label><input type='radio' id='金' value='金' name='composants-courants' /><label for='金'>金</label><input type='radio' id='阜' value='阜' name='composants-courants' /><label for='阜'>阜</label><input type='radio' id='食' value='食' name='composants-courants' /><label for='食'>食</label><input type='radio' id='馬' value='馬' name='composants-courants' /><label for='馬'>馬</label><input type='radio' id='吉' value='吉' name='composants-courants' /><label for='吉'>吉</label><input type='radio' id='戈' value='戈' name='composants-courants' /><label for='戈'>戈</label><input type='radio' id='犬' value='犬' name='composants-courants' /><label for='犬'>犬</label><input type='radio' id='分' value='分' name='composants-courants' /><label for='分'>分</label><input type='radio' id='莫' value='莫' name='composants-courants' /><label for='莫'>莫</label><input type='radio' id='虍' value='虍' name='composants-courants' /><label for='虍'>虍</label><input type='radio' id='臣' value='臣' name='composants-courants' /><label for='臣'>臣</label></div>                    </div>
+                </div>
+
+
+                <hr class="separation" />
+
+                <h2>Résultat de la recherche</h2>
+
+                <div id="chargement-recherche">
+                    <img src="http://jlptgo.com/images/ajax-loader.gif" alt="Chargement" id="chargement" />
+                </div>
+                
+                <div id="resultat-recherche-kanji"></div>
+
+        </div>
+    </div>
+
+    </div>
+</div>
+</div>
+</div>
+
+<div id="page-footer">
+    <div class="wrapper">
+        <div id="footer">
+                    <p id="text-footer">
+                        2009-2015 | JLPT-Go! JLPT-語 | Dernière mise à jour : 11 octobre 2015<br />
+                        Testé et optimisé pour les navigateurs suivants : IE > 7 <img src="http://jlptgo.com/images/ie.png" alt="IE 7 minimum"/>, Chrome > 9.0 <img src="http://jlptgo.com/images/chrome.png" alt="Chrome"/>, Opera > 11 <img src="http://jlptgo.com/images/opera.png" alt="Opéra"/>, Firefox > 3.6 <img src="http://jlptgo.com/images/firefox.png" alt="Firefox"/>
+                    </p>
+            <a href="#back-top" id="back-top"></a>
+        </div>
+    </div>
+</div>
+
+</body>
+
+<!-- Mirrored from jlptgo.com/caracteres/kanjis-recherche.php by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 05 Jan 2021 14:58:33 GMT -->
+</html>

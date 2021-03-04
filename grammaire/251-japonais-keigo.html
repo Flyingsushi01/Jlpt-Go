@@ -1,0 +1,704 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd" >
+<html>
+    
+<!-- Mirrored from jlptgo.com/grammaire/251-japonais-keigo by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 05 Jan 2021 14:59:52 GMT -->
+<head>
+        <title>JLPT-Go Grammaire japonaise keigo けいご</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="keywords" content="grammaire, japonais, keigo, けいご, N4, JLPT" />
+	<meta name="description" content="Description du point de grammaire japonaise : keigo, けいご" />
+        
+        <link rel="shortcut icon" type="image/x-icon" href="http://jlptgo.com/images/favicon.ico" />
+<link rel="stylesheet" type="text/css" href="http://jlptgo.com/css/general.css" media="all" />
+<link type="text/css" href="http://jlptgo.com/css/custom-theme/jquery-ui-1.8.9.custom.css" rel="stylesheet" />
+<link rel="stylesheet" type="text/css" href="http://jlptgo.com/css/BreadCrumb.css" media="all" />
+<link rel="stylesheet" type="text/css" href="http://jlptgo.com/css/tipsy.css" media="all" />
+
+<script type="text/javascript" src="http://jlptgo.com/js/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="http://jlptgo.com/js/jquery-ui-1.8.9.custom.min.js"></script>
+<script type="text/javascript" src="http://jlptgo.com/js/jquery.jBreadCrumb.1.1.js"></script>
+<script type="text/javascript" src="http://jlptgo.com/js/jquery.tipsy.js"></script>
+
+		<script>
+		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		  })(window,document,'script','../../www.google-analytics.com/analytics.js','ga');
+
+		  ga('create', 'UA-68690701-1', 'auto');
+		  ga('send', 'pageview');
+
+		</script>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+
+        // Accordéon
+        $("#accordion").accordion({
+            header: "h3",
+            autoHeight:false,
+            animated:false,
+            icons: {header: "ui-icon-circle-arrow-e",headerSelected: "ui-icon-circle-arrow-s"}
+        });
+
+        // Breadcrumb
+        $("#breadcrumbs").jBreadCrumb({easing:'swing'});
+    });
+</script>        <link rel="stylesheet" type="text/css" href="http://jlptgo.com/css/datatable_jui.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="http://jlptgo.com/css/QapTcha.jquery.css" media="all" />
+        <script type="text/javascript" language="javascript" src="http://jlptgo.com/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" language="javascript" src="http://jlptgo.com/js/QapTcha.jquery.js"></script>
+        <script type="text/javascript" language="javascript" src="http://jlptgo.com/js/maxLength.js"></script>
+
+        <script type="text/javascript">
+
+            function textReplacement(input){
+                var originalvalue = input.val();
+                input.focus( function(){
+                    if( $.trim(input.val()) == originalvalue ){ input.val('');
+                        $(this).removeClass("texte-defaut");}
+                });
+                input.blur( function(){
+                    if( $.trim(input.val()) == '' ){ input.val(originalvalue);
+                        $(this).addClass("texte-defaut");}
+                });
+            }
+
+            // Fonction pour afficher un message de retour après envoi d'un commentaire
+            function affiche(div,message) {
+                $(div).fadeOut(500,function(){
+                    $(div).empty();
+                    $(div).append(message);
+                    $(div).fadeIn(200);
+                    setTimeout(function(){
+                        $(div).fadeOut(1000);
+                    },5000);
+                });
+            }
+
+            function type_message(){
+                type = $("select#sujet option:selected").val();
+                if(type==1){
+                    $('#message-type1').css("display","block");
+                    $('#message-type2').css("display","none");
+                }else{
+                    $('#message-type1').css("display","none");
+                    $('#message-type2').css("display","block");
+                }
+            }
+
+            // Fonction pour remettre le formulaire à zéro
+            function raz(){
+                $('#name').val('');
+                $('#email').val('non publié').addClass("texte-defaut");
+                $('#phrase-kanji').val('phrase en japonais avec kanjis (obligatoire)').addClass("texte-defaut");
+                $('#phrase-fr').val('traduction en français (obligatoire)').addClass("texte-defaut");
+                $('#phrase-kana').val('version de la phrase en kanas (optionnelle)').addClass("texte-defaut");
+                $('#message').val('');
+                $('#QapTcha').empty().QapTcha();
+                $('#submit').button({ disabled: true }).removeClass('ui-state-focus').removeClass('ui-state-hover');
+            }
+
+            $(document).ready(function() {
+                $('#accordion').accordion('activate', 2);
+                $('#accordion').accordion('option', 'animated', 'slide');
+                $("#menu-grammaire").buttonset();
+                $('#submit').button({ disabled: true });
+                $('.gloss').tipsy({gravity: 's'});
+                $('.info_label').tipsy({gravity: 'n'});
+                $('#QapTcha').QapTcha();
+                textReplacement($('#email'));
+                textReplacement($('#phrase-kanji'));
+                textReplacement($('#phrase-fr'));
+                textReplacement($('#phrase-kana'));
+                type_message();
+                $("#message").maxlength();
+                $( "#tabs-comm" ).tabs({
+                    cache: true,
+                    ajaxOptions: {
+                        success:function() {
+                        }
+                    }
+                });
+                $('#tabs-comm .ui-tabs-panel').addClass('panel-comm');
+                   
+                oTable = $('.tab-grammaire').dataTable({
+                    "bJQueryUI": true,
+                    "bRetrieve":true,
+                    "bLengthChange": false,
+                    "bPaginate": false,
+                    "bInfo": false,
+                    "bFilter": false,
+                    "oLanguage": {"sUrl": "../imports/datatables_trad_fr.txt"}
+                });
+
+                // Soumission du message
+                $('#submit').live('click', function() {
+                    var name=$('#name').val();
+                    var email=$('#email').val();
+                    var sujet=$('#sujet').val();
+                    var message=$('#message').val();
+                    var phrase_kanji=$('#phrase-kanji').val();
+                    var phrase_fr=$('#phrase-fr').val();
+                    var phrase_kana=$('#phrase-kana').val();
+                    var id_point_gr = 251;
+                    if($('#check_valide').attr('checked')){var check_valide=1;}else{var check_valide=0;}
+                    if($('#check_signal').attr('checked')){var check_signal=1;}else{var check_signal=0;}
+                    $.ajax({ 
+                        type: "POST",
+                        url: "../traitements/envoi-commentaire.php",
+                        data: ({
+                            name:name,
+                            email:email,
+                            sujet:sujet,
+                            message:message,
+                            phrase_kana:phrase_kana,
+                            phrase_fr:phrase_fr,
+                            phrase_kanji:phrase_kanji,
+                            id_point_gr:id_point_gr,
+                            check_valide:check_valide,
+                            check_signal:check_signal
+                        }),
+                        success: function(data){
+                            affiche('#retour',data);
+                            raz();
+                        },error:function(){
+                            affiche('#retour',"<span class='nvalide ui-corner-all'>Une erreur s'est produite lors de l'envoi de votre message.</span>");
+                        }
+                    });
+                });
+
+                // Changement de l'affichag message suivant le type
+                $("select#sujet").change(function() {
+                    type_message();
+                });
+
+                $('#report-erreur').live('click', function() {
+                    $('#sujet option[value="4"]').attr("selected", "selected");
+                    type_message();
+                });
+
+            });
+        </script>
+    </head>
+
+    <body>
+    <a href="#back-top" id="back-top"></a>
+
+    <div id="page-header">
+        <div class="page-header-1">
+            <div class="wrapper">
+                <div id="header">
+                        <div id="liens-header">
+                            <a id="lien-header-1" title ="Kanjis" class="lien-header ui-corner-all" href="../caracteres/kanjis.html"></a>
+                            <a id="lien-header-2" title ="Grammaire pour le JLPT" class="lien-header ui-corner-all" href="jlpt.html"></a>
+                            <a id="lien-header-3" title ="Grammaire pour le JLPT N4" class="lien-header ui-corner-all" href="jlpt-N4.html"></a>
+                            <a id="lien-header-4" title ="Kanjis pour le JLPT" class="lien-header ui-corner-all" href="../caracteres/kanjis-jlpt.html#ui-tabs-3"></a>
+                            <a id="lien-header-5" title ="Hiraganas" class="lien-header ui-corner-all" href="../caracteres/hiraganas.html"></a>
+                            <a id="lien-header-6" title ="Examen du JLPT" class="lien-header ui-corner-all" href="../autres/examen-jlpt.html"></a>
+                            <a id="lien-header-7" title ="Test de kanjis pour le JLPT N5" class="lien-header ui-corner-all" href="../exercices/kanjis-jlpt-N5.html"></a>
+                            <a id="lien-header-8" title ="Liens divers"  class="lien-header ui-corner-all" href="../autres/liens.html"></a>
+                            <a id="lien-header-9" title ="Conjugaison japonaise"  class="lien-header ui-corner-all" href="conjugaison.html"></a>
+                            <a id="lien-header-10" title ="Vocabulaire du JLPT"  class="lien-header ui-corner-all" href="../vocabulaire/jlpt.html"></a>
+                            <a id="lien-header-11" title ="Katakanas"  class="lien-header ui-corner-all" href="../caracteres/katakanas.html"></a>
+                        </div>
+                    <div id="logo"><a id="index-site" title="Index du site" href="../index-2.html"> </a></div>
+                    <div id="mail"><a id="contact-mail" title="Contact" href="../autres/contact.html"></a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="page-middle">
+        <div class="page-middle-1">
+            <div class="wrapper">
+                <div id="middle">
+                    <div id="left">
+                        <div id="accordion">
+
+                            <div>
+                                <h3><a href="#">Accueil | ホームページ</a></h3>
+                                <ul class="nav_links">
+                                    <li>
+                                        <a href="../index-2.html">Présentation | 紹介</a>
+                                    </li>
+                                    <li>
+                                        <a href="../autres/actualites.html">Actualités | ニュース</a>
+                                    </li>
+                                    <li>
+                                        <a href="../autres/examen-jlpt.html">JLPT | 日本語能力試験</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div>
+                                <h3><a href="#">Vocabulaire | 語彙</a></h3>
+                                <ul class="nav_links">
+                                    <li>
+                                        <a href="../vocabulaire/jlpt.html">JLPT | 日本語能力試験</a>
+                                    </li>
+                                    <li>
+                                        <a href="../vocabulaire/categories.html">Catégories | カテゴリー</a>
+                                    </li>
+                                    <li>
+                                        <a href="../vocabulaire/themes.html">Thèmes | 類題</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div>
+                                <h3><a href="#">Grammaire | 文法</a></h3>
+                                <ul class="nav_links">
+                                    <li>
+                                        <a href="jlpt.html">JLPT | 日本語能力試験</a>
+                                    </li>
+                                    <li>
+                                        <a href="conjugaison.html">Conjugaison | 活用</a>
+                                    </li>
+                                    <li>
+                                        <a href="index.html">Index | 索引</a>
+                                    </li>
+                                    <li>
+                                        <a href="categories.html">Catégories | カテゴリー</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div>
+                                <h3><a href="#">Caractères | 字</a></h3>
+                                <ul class="nav_links">
+                                    <li>
+                                        <a href="../caracteres/hiraganas.html">Hiraganas | 平仮名</a>
+                                    </li>
+                                    <li>
+                                        <a href="../caracteres/katakanas.html">Katakanas | 片仮名</a>
+                                    </li>
+                                    <li>
+                                        <a href="../caracteres/kanjis.html">Kanjis | 漢字</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div>
+                                <h3><a href="#">Chaque jour | 毎日</a></h3>
+                                <ul class="nav_links">
+                                    <li>
+                                        <a href="../chaque-jour/mots-jour-jlpt.html">10 mots | 単語</a>
+                                    </li>
+                                    <li>
+                                        <a href="../chaque-jour/kanjis-jour-jlpt.html">3 kanjis | 漢字</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div>
+                                <h3><a href="#">Exercices | 練習</a></h3>
+                                <ul class="nav_links">
+                                    <li>
+                                        <a href="../exercices/vocabulaire-jlpt.html">Vocabulaire | 語彙</a>
+                                    </li>
+                                    <li>
+                                        <a href="../exercices/kanjis-jlpt.html">Kanjis | 漢字</a>
+                                    </li>
+                                    <li>
+                                        <a href="../exercices/kanas.html">Kanas | 仮名</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div>
+                                <h3><a href="#">Autre | その他</a></h3>
+                                <ul class="nav_links">
+                                    <li>
+                                        <a href="../autres/contact.html">Contact | 連絡</a>
+                                    </li>
+                                    <li>
+                                        <a href="../autres/liens.html">Liens | リンク集</a>
+                                    </li>
+                                    <li>
+                                        <a href="../autres/statistiques.html">Statistiques | 統計</a>
+                                    </li>
+                                    <li>
+                                        <a href="../autres/telechargement.html">Fichiers | ダウンロード</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+
+                        </div>
+                    </div>
+        <div id="main">
+
+            <div id="breadcrumbs" class="breadCrumb module">
+                <ul>
+                    <li>
+                        <a href="../index-2.html">Home</a>
+                    </li>
+                    <li>
+                        Grammaire
+                    </li>
+                    <li>
+                        <a href="jlpt.html">JLPT</a>
+                    </li>
+                    <li>
+                    keigo                </li>
+            </ul>
+        </div>
+
+        <div id="content">
+
+            <h1>
+                Grammaire N4 | 文法 : けいご                </h1>
+
+                <div id="menu-grammaire">
+                    <a id="jlpt" href="jlpt-N4.html">JLPT N4                       </a>
+                       <a id="categories" href="categories-9.html">Catégories</a>
+                    <a id="index" href="index.html">Index</a><a title="kawari ni" id="precedent" href="186-japonais-kawari-ni.html" class="info_label">Précédent</a><a title="vocabulaire pour le keigo" id="suivant" href="252-japonais-keigo-mots.html" class="info_label">Suivant</a>                </div>
+
+                <div id="point-grammaire"><h2>Nom</h2>
+<div id="grammaire_nom">
+     敬語 (けいご) : formes de base du keigo
+</div>
+
+<h2>Description</h2>
+<div id="grammaire_description">
+    Le keigo correspond à un système de politesse qui s'exprime à plusieurs niveaux :
+    <ul>
+        <li>丁寧語 (ていねいご) : le langage poli.<br />
+            Il permet tout simplement de mettre une certaine distance entre nous et notre interlocuteur.
+            On retrouve surtout des marques de politesse que l'on emploit par exemple avec une personne que l'on ne connait pas ou avec un collègue dans un contexte professionnel.</li>
+        <br /><li>尊敬語 (そんけいご) : la langage respectueux.<br />
+            Il permet d'exprimer le respect dû par le locuteur envers la personne dont il parle (qu'il soit présent ou non).
+            On l'utilise principalement pour parler de quelqu'un supérieur à nous.
+            On tend à élever le statut de notre interlocuteur.</li>
+        <br /><li>謙譲語 (けんじょうご) : le langage de la modestie.<br />
+            Il permet de faire preuve d'humilité, de modestie quand on parle de soi.
+            On va plutôt essayer de minimiser notre propre personne.</li>
+    </ul>
+
+
+</div>
+
+<h2>Construction</h2>
+<div id="grammaire_construction">
+
+    <span class="separateur_sens">丁寧語</span><br /><br />
+
+    La forme en ます ainsi que l'utilisation de la forme polie des adjectifs est le principal changement pour le langage poli<br />
+
+    <br /><span class="separateur_sens">尊敬語</span><br /><br />
+
+    <li>お・ご + nom + になります</li>
+    <li>お + <a href="216-japonais-forme-conjonctive.html" class="liens">forme conjonctive</a> d'un verbe + になります</li>
+    <li>La <a href="55-japonais-forme-passive.html" class="liens">forme passive</a> est parfois utilisée comme marque de politesse</li>
+
+
+    <br /><span class="separateur_sens">謙譲語</span><br /><br />
+
+    <li>お・ご + nom + します・いたします</li>
+    <li>お + forme conjonctive d'un verbe + します・いたします</li>
+
+
+    <br /><span class="separateur_sens">Emploi de お ou ご</span><br /><br />
+
+    お et ご (en kanji : 御) s'emploie comme préfixe pour former des noms ou des verbes polis.<br />
+    On utilise お devant les mots d'origine japonaise (和語・わご) qui se prononcent avec leur lecture KUN :
+    <ul>
+        <li>お花 (おはな) : fleurs</li>
+        <li>お分かり (おわかり) : comprendre</li>
+    </ul>
+
+    On utilise ご devant les mots d'origine chinoise (漢語・かんご) qui se prononcent avec leur lecture ON :
+    <ul>
+        <li>ご両親 (ごりょうしん) : parents</li>
+        <li>ご案内 (ごあんない) : information, renseignement</li>
+    </ul>
+
+    Il existe toutefois des exceptions à cette règle :
+    <ul>
+        <li>お時間 (おじかん) : heure</li>
+        <li>お勉強 (おべんきょう) : étude</li>
+        <li>お掃除 (おそうじ) : nettoyage</li>
+        <li>...</li>
+    </ul>
+
+
+    <br /><span class="separateur_sens">動詞・Verbes</span><br /><br />
+
+    Certains verbes changent suivant le niveau de langage utilisé :<br /><br />
+
+   <table class="tab-grammaire display">
+    <thead>
+        <tr>
+            <th>Sens</th>
+            <th>Verbe</th>
+            <th>丁寧語</th>
+            <th>尊敬語</th>
+            <th>謙譲語</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>faire</td>
+            <td>する</td>
+            <td>します</td>
+            <td>される・なさる</td>
+            <td>いたします</td>
+        </tr>
+        <tr>
+            <td>donner, faire pour quelqu'un</td>
+            <td>くれる</td>
+            <td>くれます</td>
+            <td>くださる</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>recevoir</td>
+            <td>もらう</td>
+            <td>もらいます</td>
+            <td></td>
+            <td>いただきます</td>
+        </tr>
+        <tr>
+            <td>donner</td>
+            <td>あげる</td>
+            <td>あげます</td>
+            <td></td>
+            <td>さしあげます</td>
+        </tr>
+        <tr>
+            <td>mourir</td>
+            <td><span class="furiganas">しぬ</span><br />死ぬ</td>
+            <td><span class="furiganas">しにます</span><br />死にます</td>
+            <td><span class="furiganas">おなくなりになる</span><br />お亡くなりになる</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>penser</td>
+            <td><span class="furiganas">おもう</span><br />思う</td>
+            <td><span class="furiganas">おもいます</span><br />思います</td>
+            <td><span class="furiganas">おおもいになる</span><br />お思いになる</td>
+            <td><span class="furiganas">ぞんじます</span><br />存じます</td>
+        </tr>
+        <tr>
+            <td>être</td>
+            <td>いる</td>
+            <td>います</td>
+            <td>いらっしゃる</td>
+            <td>おる</td>
+        </tr>
+        <tr>
+            <td>dire</td>
+            <td><span class="furiganas">いう</span><br />言う</td>
+            <td><span class="furiganas">いいます</span><br />言います</td>
+            <td>おっしゃる</td>
+            <td><span class="furiganas">もうしあげる</span><br />申し上げる</td>
+        </tr>
+        <tr>
+            <td>écouter</td>
+            <td><span class="furiganas">きく</span><br />聞く</td>
+            <td><span class="furiganas">ききます</span><br />聞きます</td>
+            <td><span class="furiganas">きかれる</span><br />聞かれる</td>
+            <td><span class="furiganas">はいちょうする</span><br />拝聴する</td>
+        </tr>
+        <tr>
+            <td>voir</td>
+            <td><span class="furiganas">みる</span><br />見る</td>
+            <td><span class="furiganas">みます</span><br />見ます</td>
+            <td><span class="furiganas">ごらんになる</span><br />ご覧になる</td>
+            <td><span class="furiganas">はいけんする</span><br />拝見する</td>
+        </tr>
+        <tr>
+            <td>aller</td>
+            <td><span class="furiganas">いく</span><br />行く</td>
+            <td><span class="furiganas">いきます</span><br />行きます</td>
+            <td><span class="furiganas">いかれる</span><br />行かれる</td>
+            <td>うかがう</td>
+        </tr>
+        <tr>
+            <td>venir</td>
+            <td><span class="furiganas">くる</span><br />来る</td>
+            <td><span class="furiganas">いきます</span><br />行きます</td>
+            <td>いらっしゃる</td>
+            <td><span class="furiganas">まいる</span><br />参る</td>
+        </tr>
+        <tr>
+            <td>rencontrer</td>
+            <td><span class="furiganas">あう</span><br />会う</td>
+            <td><span class="furiganas">あいます</span><br />会います</td>
+            <td><span class="furiganas">あわれる</span><br />会われる</td>
+            <td><span class="furiganas">おめにかかる</span><br />お目にかかる</td>
+        </tr>
+        <tr>
+            <td>rentrer</td>
+            <td><span class="furiganas">かえる</span><br />帰る</td>
+            <td><span class="furiganas">かえります</span><br />帰ります</td>
+            <td><span class="furiganas">かえられる</span><br />帰られる</td>
+            <td><span class="furiganas">かえらせていただく</span><br />帰らせていただく</td>
+        </tr>
+        <tr>
+            <td>attendre</td>
+            <td><span class="furiganas">まつ</span><br />待つ</td>
+            <td><span class="furiganas">まちます</span><br />待ちます</td>
+            <td><span class="furiganas">おまちになる</span><br />お待ちになる</td>
+            <td><span class="furiganas">またせていただく</span><br />待たせていただく</td>
+        </tr>
+        <tr>
+            <td>savoir</td>
+            <td><span class="furiganas">しる</span><br />知る</td>
+            <td><span class="furiganas">しっています</span><br />知っています</td>
+            <td><span class="furiganas">ごぞんじになる</span><br />ご存知になる</td>
+            <td><span class="furiganas">ぞんじる</span><br />存じる</td>
+        </tr>
+        <tr>
+            <td>lire</td>
+            <td><span class="furiganas">よむ</span><br />読む</td>
+            <td><span class="furiganas">よみます</span><br />読みます</td>
+            <td><span class="furiganas">よまれる</span><br />読まれる</td>
+            <td><span class="furiganas">はいどくする</span><br />拝読する</td>
+        </tr>
+        <tr>
+            <td>écrire</td>
+            <td><span class="furiganas">かく</span><br />書く</td>
+            <td><span class="furiganas">かきます</span><br />書きます</td>
+            <td><span class="furiganas">かかれる</span><br />書かれる</td>
+            <td><span class="furiganas">かかせていただく</span><br />書かせていただく</td>
+        </tr>
+        <tr>
+            <td>envoyer</td>
+            <td><span class="furiganas">おくる</span><br />送る</td>
+            <td><span class="furiganas">おくります</span><br />送ります</td>
+            <td><span class="furiganas">おくりくださる</span><br />お送りくださる</td>
+            <td><span class="furiganas">おくらせていただく</span><br />送らせていただく</td>
+        </tr>
+        <tr>
+            <td>manger</td>
+            <td><span class="furiganas">たべる</span><br />食べる</td>
+            <td><span class="furiganas">たべます</span><br />食べます</td>
+            <td><span class="furiganas">めしあがる</span><br />召し上がる</td>
+            <td>いただく</td>
+        </tr>
+    </tbody>
+   </table>
+
+</div>
+
+<h2>Exemples</h2>
+<div id="grammaire_exemples">
+
+    <span class="kanji">
+        こんなことをいつか<span class="rouge">お</span><span title="聞く・きく : écouter, entendre, demander [五段]" class="gloss">聞き</span><span class="rouge">になりました</span>か。
+    </span><br />
+        As-tu déjà entendu de telles choses ?
+    <br /><br />
+
+    <span class="kanji">
+        <span title="せんせい : professeur, enseignant" class="gloss">先生</span>、この<span title="ろんぶん : thèse, dissertation, étude (sur)" class="gloss">論文</span>を<span title="読む・よむ : lire [五段]" class="gloss">読<span class="rouge">まれました</span></span>か。
+    </span><br />
+        Professeur, avez-vous lu cet article ?
+    <br /><br />
+
+    <span class="kanji">
+        もう<span title="すこし : un peu" class="gloss">少し</span><span title="召し上がる・めしあがる : manger (poli) [五段]" class="gloss"><span class="rouge">召し上がりません</span></span>か。
+    </span><br />
+        Voulez-vous boire quelque chose d'autre ?
+
+</div></div>
+
+                <br />
+                <hr class="separation" />
+
+                <div id="commentaires">
+                    <h2>Contribuer</h2>
+                    
+                
+                    <div id="tabs-comm">
+                        <ul>
+                            <li><a id='ref-ui-tabs-1' href='http://jlptgo.com/traitements/controleur.php?action=commentaires&amp;sujet=1&amp;id=251'>Exemples de phrases (0)</a></li><li><a id='ref-ui-tabs-2' href='http://jlptgo.com/traitements/controleur.php?action=commentaires&amp;sujet=2&amp;id=251'>Remarques (4)</a></li><li><a id='ref-ui-tabs-3' href='http://jlptgo.com/traitements/controleur.php?action=commentaires&amp;sujet=3&amp;id=251'>Autres (0)</a></li><li><a id='ref-ui-tabs-4' href='http://jlptgo.com/traitements/controleur.php?action=commentaires&amp;sujet=4&amp;id=251'>Erreur dans un message (1)</a></li>                        </ul>
+                    </div>
+
+                    <div id="ecrire-commentaire">
+
+                        <a href="#message-gr" id="message-gr"></a>
+                        <div class="ui-state-active ui-corner-top">Ecrire votre message</div>
+
+                        <div class="nouveau-commentaire ui-widget-content ui-corner-bottom">
+
+                            <div id="contact">
+
+                                <fieldset>
+                                    <p>
+                                        <label id="label-name" for="name">Nom</label>
+                                        <input name="name" class="contact ui-corner-all" id="name" maxlength="50">
+                                        <span class="nvalide ui-corner-all">Champ obligatoire</span>
+                                    </p>
+                                    <p>
+                                        <label id="label-email" for="email">E-mail</label>
+                                        <input name="email" value="non publié" class="contact ui-corner-all texte-defaut" id="email">
+                                        <span class="nvalide ui-corner-all">Champ obligatoire</span>
+                                    </p>
+                                    <p>
+                                        <label id="label-sujet">Sujet</label>
+                                        <select id="sujet" class="ui-corner-all">
+                                            <option value="1">Exemple de phrase</option>
+                                            <option value="2">Remarque</option>
+                                            <option value="3">Autre</option>
+                                            <option value="4">Erreur dans un message</option>
+                                        </select>
+                                    </p>
+                                    <p>
+                                        <label id="label-message" for="message">Message</label>
+                                        <span id="message-type1">
+                                            <textarea cols="2" rows="2" id="phrase-kanji" class="phrase contact ui-corner-all texte-defaut">phrase en japonais avec kanjis (obligatoire)</textarea><br />
+                                            <textarea cols="2" rows="2" id="phrase-fr" class="phrase contact ui-corner-all texte-defaut">traduction en français (obligatoire)</textarea><br />
+                                            <textarea cols="2" rows="2" id="phrase-kana" class="phrase contact ui-corner-all texte-defaut">version de la phrase en kanas (optionnelle)</textarea>
+                                        </span>
+
+                                        <span id="message-type2">
+                                            <textarea cols="30" rows="4" class="contact ui-corner-all" name="message" id="message"></textarea>
+                                            <span class="nvalide ui-corner-all val-message">Champ obligatoire</span>
+                                        </span>
+                                    </p>
+                                    <p>
+                                        <label id="label-verif" for="QapTcha" class="info_label" title="Un captcha est une sorte de test permettant de différencier un utilisateur humain d'un ordinateur.">Captcha</label>
+                                        <span id="QapTcha"></span>
+                                    </p>
+                                    
+                                    <p>
+                                        <input type="button" name="envoi" value="Envoyer" id="submit" />
+                                    </p>
+                                    <div id="retour"></div>
+                                </fieldset>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+</div>
+</div>
+</div>
+</div>
+
+<div id="page-footer">
+    <div class="wrapper">
+        <div id="footer">
+                    <p id="text-footer">
+                        2009-2015 | JLPT-Go! JLPT-語 | Dernière mise à jour : 11 octobre 2015<br />
+                        Testé et optimisé pour les navigateurs suivants : IE > 7 <img src="http://jlptgo.com/images/ie.png" alt="IE 7 minimum"/>, Chrome > 9.0 <img src="http://jlptgo.com/images/chrome.png" alt="Chrome"/>, Opera > 11 <img src="http://jlptgo.com/images/opera.png" alt="Opéra"/>, Firefox > 3.6 <img src="http://jlptgo.com/images/firefox.png" alt="Firefox"/>
+                    </p>
+            <a href="#back-top" id="back-top"></a>
+        </div>
+    </div>
+</div>
+
+</body>
+
+<!-- Mirrored from jlptgo.com/grammaire/251-japonais-keigo by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 05 Jan 2021 14:59:52 GMT -->
+</html>

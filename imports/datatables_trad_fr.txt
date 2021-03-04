@@ -1,0 +1,17 @@
+﻿{
+	"sProcessing":   "Traitement en cours...",
+	"sLengthMenu":   "Afficher _MENU_ mots",
+	"sZeroRecords":  "Aucun mot à afficher",
+	"sInfo":         "Mot n°_START_ à _END_ sur _TOTAL_ au total",
+	"sInfoEmpty":    "0 mot",
+	"sInfoFiltered": "(sur _MAX_ mots au total)",
+	"sInfoPostFix":  "",
+	"sSearch":       "Rechercher&nbsp;:",
+	"sUrl":          "",
+	"oPaginate": {
+		"sFirst":    "Premier",
+		"sPrevious": "Précédent",
+		"sNext":     "Suivant",
+		"sLast":     "Dernier"
+	}
+}

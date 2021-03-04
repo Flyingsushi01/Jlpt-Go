@@ -1,0 +1,357 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd" >
+<html>
+    
+<!-- Mirrored from jlptgo.com/vocabulaire/jlpt.php by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 05 Jan 2021 14:34:11 GMT -->
+<head>
+        <title>Go-I Vocabulaire par niveaux du JLPT</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="keywords" content="vocabulaire, mots, JLPT, japonais, noryoku shiken, 日本語能力試験, liste, 単語, 語彙, go-i, N1, N2, N3, N4, N5" />
+	<meta name="description" content="Vocabulaire japonais des niveaux du JLPT, du N1 au N5." />
+        <link rel="shortcut icon" type="image/x-icon" href="http://jlptgo.com/images/favicon.ico" />
+<link rel="stylesheet" type="text/css" href="http://jlptgo.com/css/general.css" media="all" />
+<link type="text/css" href="http://jlptgo.com/css/custom-theme/jquery-ui-1.8.9.custom.css" rel="stylesheet" />
+<link rel="stylesheet" type="text/css" href="http://jlptgo.com/css/BreadCrumb.css" media="all" />
+<link rel="stylesheet" type="text/css" href="http://jlptgo.com/css/tipsy.css" media="all" />
+
+<script type="text/javascript" src="http://jlptgo.com/js/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="http://jlptgo.com/js/jquery-ui-1.8.9.custom.min.js"></script>
+<script type="text/javascript" src="http://jlptgo.com/js/jquery.jBreadCrumb.1.1.js"></script>
+<script type="text/javascript" src="http://jlptgo.com/js/jquery.tipsy.js"></script>
+
+		<script>
+		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		  })(window,document,'script','../../www.google-analytics.com/analytics.js','ga');
+
+		  ga('create', 'UA-68690701-1', 'auto');
+		  ga('send', 'pageview');
+
+		</script>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+
+        // Accordéon
+        $("#accordion").accordion({
+            header: "h3",
+            autoHeight:false,
+            animated:false,
+            icons: {header: "ui-icon-circle-arrow-e",headerSelected: "ui-icon-circle-arrow-s"}
+        });
+
+        // Breadcrumb
+        $("#breadcrumbs").jBreadCrumb({easing:'swing'});
+    });
+</script>        <link rel="stylesheet" type="text/css" href="http://jlptgo.com/css/datatable_jui.css" media="all" />
+        <script type="text/javascript" language="javascript" src="http://jlptgo.com/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript">
+            
+            function maj_breadcrumb(){
+                var niveau=$('input[type=radio][name=menu-voc-jlpt]:checked').attr('value');
+                var valkana=$('input[type=radio][name=menu-kana-jlpt]:checked').attr('alt');
+                // JLPT
+                if($("#breadcrumbs li#ariane-jlpt").is('.last')){
+                    $("#breadcrumbs ul li#ariane-jlpt").removeClass("last");
+                    $("#breadcrumbs ul").append("<li id='ariane-niveau' class='last'>N"+niveau+"</li>");
+                }else{
+                    // Niveau
+                    if($("#breadcrumbs li#ariane-kana").is('.last')){
+                        $("#breadcrumbs ul li#ariane-kana").remove();
+                    }
+                    $("#breadcrumbs ul li#ariane-niveau").replaceWith("<li id='ariane-niveau' class='last'>N"+niveau+"</li>");
+                }
+                // Kanas
+                if($("#breadcrumbs li#ariane-niveau").is('.last')){
+                    if(typeof valkana !== 'undefined'){
+                        $("#breadcrumbs ul li#ariane-niveau").removeClass("last")
+                        $("#breadcrumbs ul").append("<li id='ariane-kana' class='last'>"+valkana+"</li>");
+                    }
+                }else{
+                    $("#breadcrumbs ul li#ariane-kana").replaceWith("<li id='ariane-kana' class='last'>"+valkana+"</li>");
+                }
+            }
+ 
+            function tableau(){
+                $('#tableau_resultat').dataTable( {
+                    "bJQueryUI": true,
+                    "bLengthChange": false,
+                    "bPaginate": false,
+                    "bInfo": false,
+                    "bAutoWidth": false,
+                    "aoColumns": [{"sWidth":"5%"},{"sWidth":"20%"},{"sWidth":"20%"},{"sWidth":"55%"}],
+                    "oLanguage": {"sUrl": "../imports/datatables_trad_fr.txt"},
+                    "aLengthMenu": [[10, 50, -1], [10, 50, "tous les"]]
+                });
+            }
+            
+            $(document).ready(function() {
+
+                // Menus
+                $('#accordion').accordion('activate', 1);
+                $('#accordion').accordion('option', 'animated', 'slide');
+                $("#menu-voc-jlpt").buttonset();
+
+                // Lors du clic pour un niveau JLPT
+                $('#menu-voc-jlpt input').live('click', function() {
+                    var niveau=$('input[type=radio][name=menu-voc-jlpt]:checked').attr('value');
+                    $.ajax({ type: "GET", url: "../traitements/controleur.php", data: ({ action:"liste-kanas",niveau:niveau }),
+                        success: function(data){
+                            $('#resultat-kana-jlpt').html(data);
+                            $("#menu-kana-jlpt").buttonset();
+                            maj_breadcrumb();
+                            tableau();}
+                    });
+                });
+                
+                // Lors du clic pour un kana
+                $('#menu-kana-jlpt input').live('click', function() {
+                    var niveau=$('input[type=radio][name=menu-voc-jlpt]:checked').attr('value');
+                    var kana=$('input[type=radio][name=menu-kana-jlpt]:checked').attr('value');
+                    $.ajax({ type: "GET", url: "../traitements/controleur.php", data: ({ action:"liste-voc-jlpt", niveau:niveau, kana:kana }),
+                        success: function(data){
+                            $('#resultat-voc-jlpt').html(data);
+                            $('.info_prononciation').tipsy({gravity: 'n'});
+                            maj_breadcrumb();
+                            tableau();}
+                    });
+                });
+                
+            });
+        </script>
+    </head>
+
+    <body>
+    <a href="#back-top" id="back-top"></a>
+
+    <div id="page-header">
+        <div class="page-header-1">
+            <div class="wrapper">
+                <div id="header">
+                        <div id="liens-header">
+                            <a id="lien-header-1" title ="Kanjis" class="lien-header ui-corner-all" href="../caracteres/kanjis.html"></a>
+                            <a id="lien-header-2" title ="Grammaire pour le JLPT" class="lien-header ui-corner-all" href="../grammaire/jlpt.html"></a>
+                            <a id="lien-header-3" title ="Grammaire pour le JLPT N4" class="lien-header ui-corner-all" href="../grammaire/jlpt-N4.html"></a>
+                            <a id="lien-header-4" title ="Kanjis pour le JLPT" class="lien-header ui-corner-all" href="../caracteres/kanjis-jlpt.html#ui-tabs-3"></a>
+                            <a id="lien-header-5" title ="Hiraganas" class="lien-header ui-corner-all" href="../caracteres/hiraganas.html"></a>
+                            <a id="lien-header-6" title ="Examen du JLPT" class="lien-header ui-corner-all" href="../autres/examen-jlpt.html"></a>
+                            <a id="lien-header-7" title ="Test de kanjis pour le JLPT N5" class="lien-header ui-corner-all" href="../exercices/kanjis-jlpt-N5.html"></a>
+                            <a id="lien-header-8" title ="Liens divers"  class="lien-header ui-corner-all" href="../autres/liens.html"></a>
+                            <a id="lien-header-9" title ="Conjugaison japonaise"  class="lien-header ui-corner-all" href="../grammaire/conjugaison.html"></a>
+                            <a id="lien-header-10" title ="Vocabulaire du JLPT"  class="lien-header ui-corner-all" href="jlpt.html"></a>
+                            <a id="lien-header-11" title ="Katakanas"  class="lien-header ui-corner-all" href="../caracteres/katakanas.html"></a>
+                        </div>
+                    <div id="logo"><a id="index-site" title="Index du site" href="../index-2.html"> </a></div>
+                    <div id="mail"><a id="contact-mail" title="Contact" href="../autres/contact.html"></a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="page-middle">
+        <div class="page-middle-1">
+            <div class="wrapper">
+                <div id="middle">
+                    <div id="left">
+                        <div id="accordion">
+
+                            <div>
+                                <h3><a href="#">Accueil | ホームページ</a></h3>
+                                <ul class="nav_links">
+                                    <li>
+                                        <a href="../index-2.html">Présentation | 紹介</a>
+                                    </li>
+                                    <li>
+                                        <a href="../autres/actualites.html">Actualités | ニュース</a>
+                                    </li>
+                                    <li>
+                                        <a href="../autres/examen-jlpt.html">JLPT | 日本語能力試験</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div>
+                                <h3><a href="#">Vocabulaire | 語彙</a></h3>
+                                <ul class="nav_links">
+                                    <li>
+                                        <a href="jlpt.html">JLPT | 日本語能力試験</a>
+                                    </li>
+                                    <li>
+                                        <a href="categories.html">Catégories | カテゴリー</a>
+                                    </li>
+                                    <li>
+                                        <a href="themes.html">Thèmes | 類題</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div>
+                                <h3><a href="#">Grammaire | 文法</a></h3>
+                                <ul class="nav_links">
+                                    <li>
+                                        <a href="../grammaire/jlpt.html">JLPT | 日本語能力試験</a>
+                                    </li>
+                                    <li>
+                                        <a href="../grammaire/conjugaison.html">Conjugaison | 活用</a>
+                                    </li>
+                                    <li>
+                                        <a href="../grammaire/index.html">Index | 索引</a>
+                                    </li>
+                                    <li>
+                                        <a href="../grammaire/categories.html">Catégories | カテゴリー</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div>
+                                <h3><a href="#">Caractères | 字</a></h3>
+                                <ul class="nav_links">
+                                    <li>
+                                        <a href="../caracteres/hiraganas.html">Hiraganas | 平仮名</a>
+                                    </li>
+                                    <li>
+                                        <a href="../caracteres/katakanas.html">Katakanas | 片仮名</a>
+                                    </li>
+                                    <li>
+                                        <a href="../caracteres/kanjis.html">Kanjis | 漢字</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div>
+                                <h3><a href="#">Chaque jour | 毎日</a></h3>
+                                <ul class="nav_links">
+                                    <li>
+                                        <a href="../chaque-jour/mots-jour-jlpt.html">10 mots | 単語</a>
+                                    </li>
+                                    <li>
+                                        <a href="../chaque-jour/kanjis-jour-jlpt.html">3 kanjis | 漢字</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div>
+                                <h3><a href="#">Exercices | 練習</a></h3>
+                                <ul class="nav_links">
+                                    <li>
+                                        <a href="../exercices/vocabulaire-jlpt.html">Vocabulaire | 語彙</a>
+                                    </li>
+                                    <li>
+                                        <a href="../exercices/kanjis-jlpt.html">Kanjis | 漢字</a>
+                                    </li>
+                                    <li>
+                                        <a href="../exercices/kanas.html">Kanas | 仮名</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div>
+                                <h3><a href="#">Autre | その他</a></h3>
+                                <ul class="nav_links">
+                                    <li>
+                                        <a href="../autres/contact.html">Contact | 連絡</a>
+                                    </li>
+                                    <li>
+                                        <a href="../autres/liens.html">Liens | リンク集</a>
+                                    </li>
+                                    <li>
+                                        <a href="../autres/statistiques.html">Statistiques | 統計</a>
+                                    </li>
+                                    <li>
+                                        <a href="../autres/telechargement.html">Fichiers | ダウンロード</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+
+                        </div>
+                    </div>
+        <div id="main">
+
+            <div id="breadcrumbs" class="breadCrumb module">
+                <ul>
+                    <li>
+                        <a href="../index-2.html">Home</a>
+                    </li>
+                    <li>
+                        Vocabulaire
+                    </li>
+                    <li id='ariane-jlpt'>
+                        <a href="jlpt.html">JLPT</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div id="content">
+
+                <h1>Vocabulaire du JLPT | 日本語能力試験の単語</h1>
+
+                <div id="menu-voc-jlpt">
+                    <input type="radio" id="jlpt5" value="5" name="menu-voc-jlpt" /><label for="jlpt5">JLPT N5</label>
+                    <input type="radio" id="jlpt4" value="4" name="menu-voc-jlpt" /><label for="jlpt4">JLPT N4</label>
+                    <input type="radio" id="jlpt3" value="3" name="menu-voc-jlpt" /><label for="jlpt3">JLPT N3</label>
+                    <input type="radio" id="jlpt2" value="2" name="menu-voc-jlpt" /><label for="jlpt2">JLPT N2</label>
+                    <input type="radio" id="jlpt1" value="1" name="menu-voc-jlpt" /><label for="jlpt1">JLPT N1</label>
+                </div>
+
+
+                <div id="resultat-kana-jlpt">
+
+                    <h2>Présentations</h2>
+
+                    <p>
+                        Cette section regroupe le vocabulaire suivant les niveaux du nouveau JLPT.
+                        A chaque niveau, les mots sont divisés ensuite suivant leur premier kana afin de gagner en lisibilité.
+                        Certaines abréviations sont utilisées pour les verbes, les <a href='http://en.wikipedia.org/wiki/Gairaigo' target='_blank' class='liens_externes'>gairaigos</a> (les mots d'origine étrangère) et certains mots afin de fournir quelques renseignements supplémentaires :
+                    </p>
+                    <ul id='index_liste'>
+                        <li>[一段] : verbe <a href='http://fr.wikibooks.org/wiki/Japonais/Grammaire/Verbes#.E4.B8.80.E6.AE.B5_classe_ichidan' target='_blank' class='liens_externes'>ichidan</a></li>
+                        <li>[五段] : verbe <a href='http://fr.wikibooks.org/wiki/Japonais/Grammaire/Verbes#.E4.BA.94.E6.AE.B5_classe_godan' target='_blank' class='liens_externes'>godan</a></li>
+                        <li>[vt] : verbe transitif</li>
+                        <li>[vi] : verbe intransitif</li>
+                        <li>[ XXXX (YYY)] : mot original correspondant au gairaigo suivi de la langue d'origine</li>
+                        <li>[suffixe] : le mot est utilisé en tant que suffixe (~mot)</li>
+                        <li>[préfixe] : le mot est utilisé en tant que préfixe (mot~)</li>
+                    </ul>
+
+                    <p>
+                        Le classement des mots suivant le niveau JLPT a été réalisé suivant les PDF provenant du Meguro Language Center pour les niveaux N1, N2, N4 et N5 (anciennement 1級, 2級, 3級 et 4級) :
+                    </p>
+
+                    <img class='liste_sources' alt="puce" src='http://jlptgo.com/images/puce_liens.png' />
+                    <a href='http://www.mlcjapanese.co.jp/MLC_JLPT_Page.htm#Materials' target='_blank' class='liens_externes'>PDF regroupant kanjis, vocabulaire et grammaire des tests passés　</a>
+
+                    <p>
+                        Le classement des mots pour le nouveau niveau N3 (entre l'ancien 3級 et 2級) a été fait à partir de la liste de Jonathan Waller sur son site Tanos.co.uk.
+                        Je suis parti de cette liste où j'ai modifié certains mots car ils étaient déjà présents dans les niveaux 3級 et 4級.
+                    </p>
+                    
+                    <img class='liste_sources' alt="puce" src='http://jlptgo.com/images/puce_liens.png' />
+                    <a href='http://www.tanos.co.uk/jlpt/jlpt3/vocab/' target='_blank' class='liens_externes'>Site Tanos.co.uk</a>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+</div>
+</div>
+
+<div id="page-footer">
+    <div class="wrapper">
+        <div id="footer">
+                    <p id="text-footer">
+                        2009-2015 | JLPT-Go! JLPT-語 | Dernière mise à jour : 11 octobre 2015<br />
+                        Testé et optimisé pour les navigateurs suivants : IE > 7 <img src="http://jlptgo.com/images/ie.png" alt="IE 7 minimum"/>, Chrome > 9.0 <img src="http://jlptgo.com/images/chrome.png" alt="Chrome"/>, Opera > 11 <img src="http://jlptgo.com/images/opera.png" alt="Opéra"/>, Firefox > 3.6 <img src="http://jlptgo.com/images/firefox.png" alt="Firefox"/>
+                    </p>
+            <a href="#back-top" id="back-top"></a>
+        </div>
+    </div>
+</div>
+
+</body>
+
+<!-- Mirrored from jlptgo.com/vocabulaire/jlpt.php by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 05 Jan 2021 14:34:11 GMT -->
+</html>

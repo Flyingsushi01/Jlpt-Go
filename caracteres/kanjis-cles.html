@@ -1,0 +1,313 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd" >
+<html>
+    
+<!-- Mirrored from jlptgo.com/caracteres/kanjis-cles.php by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 05 Jan 2021 14:58:33 GMT -->
+<head>
+        <title>JLPT-Go Kanjis classés par clés</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="keywords" content="JLPT-Go, kanji, kanjis, clés, radicaux, bushu" />
+	<meta name="description" content="Recherche d'un kanji suivant sa clé (son radical)" />
+        <link rel="shortcut icon" type="image/x-icon" href="http://jlptgo.com/images/favicon.ico" />
+<link rel="stylesheet" type="text/css" href="http://jlptgo.com/css/general.css" media="all" />
+<link type="text/css" href="http://jlptgo.com/css/custom-theme/jquery-ui-1.8.9.custom.css" rel="stylesheet" />
+<link rel="stylesheet" type="text/css" href="http://jlptgo.com/css/BreadCrumb.css" media="all" />
+<link rel="stylesheet" type="text/css" href="http://jlptgo.com/css/tipsy.css" media="all" />
+
+<script type="text/javascript" src="http://jlptgo.com/js/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="http://jlptgo.com/js/jquery-ui-1.8.9.custom.min.js"></script>
+<script type="text/javascript" src="http://jlptgo.com/js/jquery.jBreadCrumb.1.1.js"></script>
+<script type="text/javascript" src="http://jlptgo.com/js/jquery.tipsy.js"></script>
+
+		<script>
+		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		  })(window,document,'script','../../www.google-analytics.com/analytics.js','ga');
+
+		  ga('create', 'UA-68690701-1', 'auto');
+		  ga('send', 'pageview');
+
+		</script>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+
+        // Accordéon
+        $("#accordion").accordion({
+            header: "h3",
+            autoHeight:false,
+            animated:false,
+            icons: {header: "ui-icon-circle-arrow-e",headerSelected: "ui-icon-circle-arrow-s"}
+        });
+
+        // Breadcrumb
+        $("#breadcrumbs").jBreadCrumb({easing:'swing'});
+    });
+</script>        <script type="text/javascript">
+            $(document).ready(function() {
+                
+                // Menus
+                $('#accordion').accordion('activate', 3);
+                $('#accordion').accordion('option', 'animated', 'slide');
+                
+                $("#menu-kanjis").buttonset();
+                $('#menu-kanjis #5 span').addClass('ui-state-active');
+
+                // Chargement image
+                $('img#chargement')
+                .hide()
+                .ajaxStart(function() {
+                    $(this).show();
+                })
+                .ajaxStop(function() {
+                    $(this).hide();
+                });
+
+                $('#liste-cles input').button();
+
+                 $('#liste-cles input:not(.nb-traits)').live('click', function() {
+                    $('#resultat-recherche-kanji').html("");
+                    var cle=$('input:radio[name=liste-cles]:checked').val();
+                    $.ajax({ type: "GET", url: "../traitements/controleur.php", data: ({action:"kanji-recherche",type:"kanji-recherche-cle", cle:cle }),
+                        success: function(data){
+                            $('#resultat-recherche-kanji').html(data);
+                            $('.info-prononciation').tipsy({gravity: 'n'});}
+                    });
+                });
+
+
+            });
+        </script>
+    </head>
+
+    <body>
+    <a href="#back-top" id="back-top"></a>
+
+    <div id="page-header">
+        <div class="page-header-1">
+            <div class="wrapper">
+                <div id="header">
+                        <div id="liens-header">
+                            <a id="lien-header-1" title ="Kanjis" class="lien-header ui-corner-all" href="kanjis.html"></a>
+                            <a id="lien-header-2" title ="Grammaire pour le JLPT" class="lien-header ui-corner-all" href="../grammaire/jlpt.html"></a>
+                            <a id="lien-header-3" title ="Grammaire pour le JLPT N4" class="lien-header ui-corner-all" href="../grammaire/jlpt-N4.html"></a>
+                            <a id="lien-header-4" title ="Kanjis pour le JLPT" class="lien-header ui-corner-all" href="kanjis-jlpt.html#ui-tabs-3"></a>
+                            <a id="lien-header-5" title ="Hiraganas" class="lien-header ui-corner-all" href="hiraganas.html"></a>
+                            <a id="lien-header-6" title ="Examen du JLPT" class="lien-header ui-corner-all" href="../autres/examen-jlpt.html"></a>
+                            <a id="lien-header-7" title ="Test de kanjis pour le JLPT N5" class="lien-header ui-corner-all" href="../exercices/kanjis-jlpt-N5.html"></a>
+                            <a id="lien-header-8" title ="Liens divers"  class="lien-header ui-corner-all" href="../autres/liens.html"></a>
+                            <a id="lien-header-9" title ="Conjugaison japonaise"  class="lien-header ui-corner-all" href="../grammaire/conjugaison.html"></a>
+                            <a id="lien-header-10" title ="Vocabulaire du JLPT"  class="lien-header ui-corner-all" href="../vocabulaire/jlpt.html"></a>
+                            <a id="lien-header-11" title ="Katakanas"  class="lien-header ui-corner-all" href="katakanas.html"></a>
+                        </div>
+                    <div id="logo"><a id="index-site" title="Index du site" href="../index-2.html"> </a></div>
+                    <div id="mail"><a id="contact-mail" title="Contact" href="../autres/contact.html"></a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="page-middle">
+        <div class="page-middle-1">
+            <div class="wrapper">
+                <div id="middle">
+                    <div id="left">
+                        <div id="accordion">
+
+                            <div>
+                                <h3><a href="#">Accueil | ホームページ</a></h3>
+                                <ul class="nav_links">
+                                    <li>
+                                        <a href="../index-2.html">Présentation | 紹介</a>
+                                    </li>
+                                    <li>
+                                        <a href="../autres/actualites.html">Actualités | ニュース</a>
+                                    </li>
+                                    <li>
+                                        <a href="../autres/examen-jlpt.html">JLPT | 日本語能力試験</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div>
+                                <h3><a href="#">Vocabulaire | 語彙</a></h3>
+                                <ul class="nav_links">
+                                    <li>
+                                        <a href="../vocabulaire/jlpt.html">JLPT | 日本語能力試験</a>
+                                    </li>
+                                    <li>
+                                        <a href="../vocabulaire/categories.html">Catégories | カテゴリー</a>
+                                    </li>
+                                    <li>
+                                        <a href="../vocabulaire/themes.html">Thèmes | 類題</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div>
+                                <h3><a href="#">Grammaire | 文法</a></h3>
+                                <ul class="nav_links">
+                                    <li>
+                                        <a href="../grammaire/jlpt.html">JLPT | 日本語能力試験</a>
+                                    </li>
+                                    <li>
+                                        <a href="../grammaire/conjugaison.html">Conjugaison | 活用</a>
+                                    </li>
+                                    <li>
+                                        <a href="../grammaire/index.html">Index | 索引</a>
+                                    </li>
+                                    <li>
+                                        <a href="../grammaire/categories.html">Catégories | カテゴリー</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div>
+                                <h3><a href="#">Caractères | 字</a></h3>
+                                <ul class="nav_links">
+                                    <li>
+                                        <a href="hiraganas.html">Hiraganas | 平仮名</a>
+                                    </li>
+                                    <li>
+                                        <a href="katakanas.html">Katakanas | 片仮名</a>
+                                    </li>
+                                    <li>
+                                        <a href="kanjis.html">Kanjis | 漢字</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div>
+                                <h3><a href="#">Chaque jour | 毎日</a></h3>
+                                <ul class="nav_links">
+                                    <li>
+                                        <a href="../chaque-jour/mots-jour-jlpt.html">10 mots | 単語</a>
+                                    </li>
+                                    <li>
+                                        <a href="../chaque-jour/kanjis-jour-jlpt.html">3 kanjis | 漢字</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div>
+                                <h3><a href="#">Exercices | 練習</a></h3>
+                                <ul class="nav_links">
+                                    <li>
+                                        <a href="../exercices/vocabulaire-jlpt.html">Vocabulaire | 語彙</a>
+                                    </li>
+                                    <li>
+                                        <a href="../exercices/kanjis-jlpt.html">Kanjis | 漢字</a>
+                                    </li>
+                                    <li>
+                                        <a href="../exercices/kanas.html">Kanas | 仮名</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div>
+                                <h3><a href="#">Autre | その他</a></h3>
+                                <ul class="nav_links">
+                                    <li>
+                                        <a href="../autres/contact.html">Contact | 連絡</a>
+                                    </li>
+                                    <li>
+                                        <a href="../autres/liens.html">Liens | リンク集</a>
+                                    </li>
+                                    <li>
+                                        <a href="../autres/statistiques.html">Statistiques | 統計</a>
+                                    </li>
+                                    <li>
+                                        <a href="../autres/telechargement.html">Fichiers | ダウンロード</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+
+                        </div>
+                    </div>
+        <div id="main">
+
+            <div id="breadcrumbs" class="breadCrumb module">
+                <ul>
+                    <li>
+                        <a href="../index-2.html">Home</a>
+                    </li>
+                    <li>
+                        Caractères
+                    </li>
+                    <li>
+                        <a href="kanjis.html">Kanjis</a>
+                    </li>
+                    <li>
+                        Bushus
+                    </li>
+                </ul>
+            </div>
+
+            <div id="content">
+
+                <h1>Kanjis classés par clés | 部首</h1>
+
+            <div id="menu-kanjis">
+    <a id="1" href="kanjis-primaires.html">Primaire</a>
+    <a id="2" href="kanjis-secondaires.html">Secondaire</a>
+    <a id="3" href="kanjis-jlpt.html">Niveau JLPT</a>
+    <a id="4" href="kanjis-recherche.html">Recherche</a>
+    <a id="5" href="kanjis-cles.html">Clés</a>
+</div>
+            <h2>Explications sur les clés (bushu)</h2>
+
+            <p>
+                Une clé, ou bushu (部首), est une partie du kanji qui lui est propre. Chaque kanji ne possède qu'une seule clé qui est notamment utilisée pour faire des recherches dans un dictionnaire. On compte 214 clés au total, mais certaines sont très rares - comme 齊 - tandis que d'autres sont très fréquentes - comme 木.<br/><br />
+                Une clé se retrouve parfois légèrement modifiée quand elle se trouve dans un kanji complexe, avec par exemple :
+            </p>
+            <ul>
+                <li>人 qui devient 亻</li>
+                <li>水 qui devient 氵</li>
+                <li>刀 qui devient 刂</li>
+                <li>牛 qui devient 牜</li>
+                <li>火 qui devient 灬</li>
+                <li>示 qui devient 礻</li>
+                <li>艸 qui devient 艹</li>
+                <li>邑 qui devient 阝</li>
+                <li>心 qui devient 忄</li>
+            </ul>
+
+            <h2>Liste des différentes clés triées par nombre de traits</h2>
+
+            <div id="liste-cles"><span class="traits"><input type='radio' class='nb-traits' id='1' value='1' name='nb-traits-1' /><label for='1' class='ui-state-active'>1</label><input type='radio' id='一' value='1' name='liste-cles' /><label for='一'>一</label><input type='radio' id='亅' value='6' name='liste-cles' /><label for='亅'>亅</label><input type='radio' id='乙' value='5' name='liste-cles' /><label for='乙'>乙</label><input type='radio' id='丿' value='4' name='liste-cles' /><label for='丿'>丿</label><input type='radio' id='丶' value='3' name='liste-cles' /><label for='丶'>丶</label><input type='radio' id='丨' value='2' name='liste-cles' /><label for='丨'>丨</label></span><span class="traits"><input type='radio' class='nb-traits' id='2' value='2' name='nb-traits-2' /><label for='2' class='ui-state-active'>2</label><input type='radio' id='勹' value='20' name='liste-cles' /><label for='勹'>勹</label><input type='radio' id='匕' value='21' name='liste-cles' /><label for='匕'>匕</label><input type='radio' id='匚' value='22' name='liste-cles' /><label for='匚'>匚</label><input type='radio' id='十' value='24' name='liste-cles' /><label for='十'>十</label><input type='radio' id='卜' value='25' name='liste-cles' /><label for='卜'>卜</label><input type='radio' id='卩' value='26' name='liste-cles' /><label for='卩'>卩</label><input type='radio' id='厂' value='27' name='liste-cles' /><label for='厂'>厂</label><input type='radio' id='厶' value='28' name='liste-cles' /><label for='厶'>厶</label><input type='radio' id='又' value='29' name='liste-cles' /><label for='又'>又</label><input type='radio' id='力' value='19' name='liste-cles' /><label for='力'>力</label><input type='radio' id='刀' value='18' name='liste-cles' /><label for='刀'>刀</label><input type='radio' id='凵' value='17' name='liste-cles' /><label for='凵'>凵</label><input type='radio' id='二' value='7' name='liste-cles' /><label for='二'>二</label><input type='radio' id='亠' value='8' name='liste-cles' /><label for='亠'>亠</label><input type='radio' id='人' value='9' name='liste-cles' /><label for='人'>人</label><input type='radio' id='儿' value='10' name='liste-cles' /><label for='儿'>儿</label><input type='radio' id='入' value='11' name='liste-cles' /><label for='入'>入</label><input type='radio' id='八' value='12' name='liste-cles' /><label for='八'>八</label><input type='radio' id='冂' value='13' name='liste-cles' /><label for='冂'>冂</label><input type='radio' id='冖' value='14' name='liste-cles' /><label for='冖'>冖</label><input type='radio' id='冫' value='15' name='liste-cles' /><label for='冫'>冫</label><input type='radio' id='几' value='16' name='liste-cles' /><label for='几'>几</label></span><span class="traits"><input type='radio' class='nb-traits' id='3' value='3' name='nb-traits-3' /><label for='3' class='ui-state-active'>3</label><input type='radio' id='幺' value='52' name='liste-cles' /><label for='幺'>幺</label><input type='radio' id='干' value='51' name='liste-cles' /><label for='干'>干</label><input type='radio' id='巾' value='50' name='liste-cles' /><label for='巾'>巾</label><input type='radio' id='己' value='49' name='liste-cles' /><label for='己'>己</label><input type='radio' id='工' value='48' name='liste-cles' /><label for='工'>工</label><input type='radio' id='川' value='47' name='liste-cles' /><label for='川'>川</label><input type='radio' id='广' value='53' name='liste-cles' /><label for='广'>广</label><input type='radio' id='廴' value='54' name='liste-cles' /><label for='廴'>廴</label><input type='radio' id='廾' value='55' name='liste-cles' /><label for='廾'>廾</label><input type='radio' id='弋' value='56' name='liste-cles' /><label for='弋'>弋</label><input type='radio' id='弓' value='57' name='liste-cles' /><label for='弓'>弓</label><input type='radio' id='ヨ' value='58' name='liste-cles' /><label for='ヨ'>ヨ</label><input type='radio' id='彡' value='59' name='liste-cles' /><label for='彡'>彡</label><input type='radio' id='彳' value='60' name='liste-cles' /><label for='彳'>彳</label><input type='radio' id='山' value='46' name='liste-cles' /><label for='山'>山</label><input type='radio' id='尸' value='44' name='liste-cles' /><label for='尸'>尸</label><input type='radio' id='口' value='30' name='liste-cles' /><label for='口'>口</label><input type='radio' id='囗' value='31' name='liste-cles' /><label for='囗'>囗</label><input type='radio' id='土' value='32' name='liste-cles' /><label for='土'>土</label><input type='radio' id='士' value='33' name='liste-cles' /><label for='士'>士</label><input type='radio' id='夂' value='34' name='liste-cles' /><label for='夂'>夂</label><input type='radio' id='夕' value='36' name='liste-cles' /><label for='夕'>夕</label><input type='radio' id='大' value='37' name='liste-cles' /><label for='大'>大</label><input type='radio' id='小' value='42' name='liste-cles' /><label for='小'>小</label><input type='radio' id='寸' value='41' name='liste-cles' /><label for='寸'>寸</label><input type='radio' id='宀' value='40' name='liste-cles' /><label for='宀'>宀</label><input type='radio' id='子' value='39' name='liste-cles' /><label for='子'>子</label><input type='radio' id='女' value='38' name='liste-cles' /><label for='女'>女</label></span><span class="traits"><input type='radio' class='nb-traits' id='4' value='4' name='nb-traits-4' /><label for='4' class='ui-state-active'>4</label><input type='radio' id='水' value='85' name='liste-cles' /><label for='水'>水</label><input type='radio' id='气' value='84' name='liste-cles' /><label for='气'>气</label><input type='radio' id='氏' value='83' name='liste-cles' /><label for='氏'>氏</label><input type='radio' id='毛' value='82' name='liste-cles' /><label for='毛'>毛</label><input type='radio' id='比' value='81' name='liste-cles' /><label for='比'>比</label><input type='radio' id='毋' value='80' name='liste-cles' /><label for='毋'>毋</label><input type='radio' id='殳' value='79' name='liste-cles' /><label for='殳'>殳</label><input type='radio' id='火' value='86' name='liste-cles' /><label for='火'>火</label><input type='radio' id='爪' value='87' name='liste-cles' /><label for='爪'>爪</label><input type='radio' id='父' value='88' name='liste-cles' /><label for='父'>父</label><input type='radio' id='爿' value='90' name='liste-cles' /><label for='爿'>爿</label><input type='radio' id='片' value='91' name='liste-cles' /><label for='片'>片</label><input type='radio' id='牙' value='92' name='liste-cles' /><label for='牙'>牙</label><input type='radio' id='牛' value='93' name='liste-cles' /><label for='牛'>牛</label><input type='radio' id='犬' value='94' name='liste-cles' /><label for='犬'>犬</label><input type='radio' id='歹' value='78' name='liste-cles' /><label for='歹'>歹</label><input type='radio' id='止' value='77' name='liste-cles' /><label for='止'>止</label><input type='radio' id='心' value='61' name='liste-cles' /><label for='心'>心</label><input type='radio' id='戈' value='62' name='liste-cles' /><label for='戈'>戈</label><input type='radio' id='戸' value='63' name='liste-cles' /><label for='戸'>戸</label><input type='radio' id='手' value='64' name='liste-cles' /><label for='手'>手</label><input type='radio' id='支' value='65' name='liste-cles' /><label for='支'>支</label><input type='radio' id='攴' value='66' name='liste-cles' /><label for='攴'>攴</label><input type='radio' id='文' value='67' name='liste-cles' /><label for='文'>文</label><input type='radio' id='斗' value='68' name='liste-cles' /><label for='斗'>斗</label><input type='radio' id='斤' value='69' name='liste-cles' /><label for='斤'>斤</label><input type='radio' id='欠' value='76' name='liste-cles' /><label for='欠'>欠</label><input type='radio' id='木' value='75' name='liste-cles' /><label for='木'>木</label><input type='radio' id='月' value='74' name='liste-cles' /><label for='月'>月</label><input type='radio' id='日' value='72' name='liste-cles' /><label for='日'>日</label><input type='radio' id='方' value='70' name='liste-cles' /><label for='方'>方</label></span><span class="traits"><input type='radio' class='nb-traits' id='5' value='5' name='nb-traits-5' /><label for='5' class='ui-state-active'>5</label><input type='radio' id='皿' value='108' name='liste-cles' /><label for='皿'>皿</label><input type='radio' id='目' value='109' name='liste-cles' /><label for='目'>目</label><input type='radio' id='矛' value='110' name='liste-cles' /><label for='矛'>矛</label><input type='radio' id='矢' value='111' name='liste-cles' /><label for='矢'>矢</label><input type='radio' id='石' value='112' name='liste-cles' /><label for='石'>石</label><input type='radio' id='示' value='113' name='liste-cles' /><label for='示'>示</label><input type='radio' id='禾' value='115' name='liste-cles' /><label for='禾'>禾</label><input type='radio' id='穴' value='116' name='liste-cles' /><label for='穴'>穴</label><input type='radio' id='立' value='117' name='liste-cles' /><label for='立'>立</label><input type='radio' id='皮' value='107' name='liste-cles' /><label for='皮'>皮</label><input type='radio' id='白' value='106' name='liste-cles' /><label for='白'>白</label><input type='radio' id='癶' value='105' name='liste-cles' /><label for='癶'>癶</label><input type='radio' id='玄' value='95' name='liste-cles' /><label for='玄'>玄</label><input type='radio' id='玉' value='96' name='liste-cles' /><label for='玉'>玉</label><input type='radio' id='瓦' value='98' name='liste-cles' /><label for='瓦'>瓦</label><input type='radio' id='甘' value='99' name='liste-cles' /><label for='甘'>甘</label><input type='radio' id='生' value='100' name='liste-cles' /><label for='生'>生</label><input type='radio' id='用' value='101' name='liste-cles' /><label for='用'>用</label><input type='radio' id='田' value='102' name='liste-cles' /><label for='田'>田</label><input type='radio' id='疋' value='103' name='liste-cles' /><label for='疋'>疋</label><input type='radio' id='疒' value='104' name='liste-cles' /><label for='疒'>疒</label></span><span class="traits"><input type='radio' class='nb-traits' id='6' value='6' name='nb-traits-6' /><label for='6' class='ui-state-active'>6</label><input type='radio' id='艮' value='138' name='liste-cles' /><label for='艮'>艮</label><input type='radio' id='舟' value='137' name='liste-cles' /><label for='舟'>舟</label><input type='radio' id='舛' value='136' name='liste-cles' /><label for='舛'>舛</label><input type='radio' id='舌' value='135' name='liste-cles' /><label for='舌'>舌</label><input type='radio' id='臼' value='134' name='liste-cles' /><label for='臼'>臼</label><input type='radio' id='色' value='139' name='liste-cles' /><label for='色'>色</label><input type='radio' id='艸' value='140' name='liste-cles' /><label for='艸'>艸</label><input type='radio' id='虍' value='141' name='liste-cles' /><label for='虍'>虍</label><input type='radio' id='虫' value='142' name='liste-cles' /><label for='虫'>虫</label><input type='radio' id='血' value='143' name='liste-cles' /><label for='血'>血</label><input type='radio' id='行' value='144' name='liste-cles' /><label for='行'>行</label><input type='radio' id='衣' value='145' name='liste-cles' /><label for='衣'>衣</label><input type='radio' id='西' value='146' name='liste-cles' /><label for='西'>西</label><input type='radio' id='至' value='133' name='liste-cles' /><label for='至'>至</label><input type='radio' id='自' value='132' name='liste-cles' /><label for='自'>自</label><input type='radio' id='臣' value='131' name='liste-cles' /><label for='臣'>臣</label><input type='radio' id='竹' value='118' name='liste-cles' /><label for='竹'>竹</label><input type='radio' id='米' value='119' name='liste-cles' /><label for='米'>米</label><input type='radio' id='糸' value='120' name='liste-cles' /><label for='糸'>糸</label><input type='radio' id='缶' value='121' name='liste-cles' /><label for='缶'>缶</label><input type='radio' id='网' value='122' name='liste-cles' /><label for='网'>网</label><input type='radio' id='羊' value='123' name='liste-cles' /><label for='羊'>羊</label><input type='radio' id='羽' value='124' name='liste-cles' /><label for='羽'>羽</label><input type='radio' id='老' value='125' name='liste-cles' /><label for='老'>老</label><input type='radio' id='肉' value='130' name='liste-cles' /><label for='肉'>肉</label><input type='radio' id='聿' value='129' name='liste-cles' /><label for='聿'>聿</label><input type='radio' id='耳' value='128' name='liste-cles' /><label for='耳'>耳</label><input type='radio' id='耒' value='127' name='liste-cles' /><label for='耒'>耒</label><input type='radio' id='而' value='126' name='liste-cles' /><label for='而'>而</label></span><span class="traits"><input type='radio' class='nb-traits' id='7' value='7' name='nb-traits-7' /><label for='7' class='ui-state-active'>7</label><input type='radio' id='身' value='158' name='liste-cles' /><label for='身'>身</label><input type='radio' id='車' value='159' name='liste-cles' /><label for='車'>車</label><input type='radio' id='辛' value='160' name='liste-cles' /><label for='辛'>辛</label><input type='radio' id='辰' value='161' name='liste-cles' /><label for='辰'>辰</label><input type='radio' id='辵' value='162' name='liste-cles' /><label for='辵'>辵</label><input type='radio' id='邑' value='163' name='liste-cles' /><label for='邑'>邑</label><input type='radio' id='酉' value='164' name='liste-cles' /><label for='酉'>酉</label><input type='radio' id='釆' value='165' name='liste-cles' /><label for='釆'>釆</label><input type='radio' id='里' value='166' name='liste-cles' /><label for='里'>里</label><input type='radio' id='足' value='157' name='liste-cles' /><label for='足'>足</label><input type='radio' id='走' value='156' name='liste-cles' /><label for='走'>走</label><input type='radio' id='見' value='147' name='liste-cles' /><label for='見'>見</label><input type='radio' id='角' value='148' name='liste-cles' /><label for='角'>角</label><input type='radio' id='言' value='149' name='liste-cles' /><label for='言'>言</label><input type='radio' id='谷' value='150' name='liste-cles' /><label for='谷'>谷</label><input type='radio' id='豆' value='151' name='liste-cles' /><label for='豆'>豆</label><input type='radio' id='豕' value='152' name='liste-cles' /><label for='豕'>豕</label><input type='radio' id='豸' value='153' name='liste-cles' /><label for='豸'>豸</label><input type='radio' id='貝' value='154' name='liste-cles' /><label for='貝'>貝</label><input type='radio' id='赤' value='155' name='liste-cles' /><label for='赤'>赤</label></span><span class="traits"><input type='radio' class='nb-traits' id='8' value='8' name='nb-traits-8' /><label for='8' class='ui-state-active'>8</label><input type='radio' id='非' value='175' name='liste-cles' /><label for='非'>非</label><input type='radio' id='青' value='174' name='liste-cles' /><label for='青'>青</label><input type='radio' id='雨' value='173' name='liste-cles' /><label for='雨'>雨</label><input type='radio' id='隹' value='172' name='liste-cles' /><label for='隹'>隹</label><input type='radio' id='隶' value='171' name='liste-cles' /><label for='隶'>隶</label><input type='radio' id='阜' value='170' name='liste-cles' /><label for='阜'>阜</label><input type='radio' id='門' value='169' name='liste-cles' /><label for='門'>門</label><input type='radio' id='長' value='168' name='liste-cles' /><label for='長'>長</label><input type='radio' id='金' value='167' name='liste-cles' /><label for='金'>金</label></span><span class="traits"><input type='radio' class='nb-traits' id='9' value='9' name='nb-traits-9' /><label for='9' class='ui-state-active'>9</label><input type='radio' id='香' value='186' name='liste-cles' /><label for='香'>香</label><input type='radio' id='首' value='185' name='liste-cles' /><label for='首'>首</label><input type='radio' id='食' value='184' name='liste-cles' /><label for='食'>食</label><input type='radio' id='飛' value='183' name='liste-cles' /><label for='飛'>飛</label><input type='radio' id='風' value='182' name='liste-cles' /><label for='風'>風</label><input type='radio' id='頁' value='181' name='liste-cles' /><label for='頁'>頁</label><input type='radio' id='音' value='180' name='liste-cles' /><label for='音'>音</label><input type='radio' id='韋' value='178' name='liste-cles' /><label for='韋'>韋</label><input type='radio' id='革' value='177' name='liste-cles' /><label for='革'>革</label><input type='radio' id='面' value='176' name='liste-cles' /><label for='面'>面</label></span><span class="traits"><input type='radio' class='nb-traits' id='10' value='10' name='nb-traits-10' /><label for='10' class='ui-state-active'>10</label><input type='radio' id='鬼' value='194' name='liste-cles' /><label for='鬼'>鬼</label><input type='radio' id='鬲' value='193' name='liste-cles' /><label for='鬲'>鬲</label><input type='radio' id='髟' value='190' name='liste-cles' /><label for='髟'>髟</label><input type='radio' id='高' value='189' name='liste-cles' /><label for='高'>高</label><input type='radio' id='骨' value='188' name='liste-cles' /><label for='骨'>骨</label><input type='radio' id='馬' value='187' name='liste-cles' /><label for='馬'>馬</label></span><span class="traits"><input type='radio' class='nb-traits' id='11' value='11' name='nb-traits-11' /><label for='11' class='ui-state-active'>11</label><input type='radio' id='麻' value='200' name='liste-cles' /><label for='麻'>麻</label><input type='radio' id='麦' value='199' name='liste-cles' /><label for='麦'>麦</label><input type='radio' id='鹿' value='198' name='liste-cles' /><label for='鹿'>鹿</label><input type='radio' id='鳥' value='196' name='liste-cles' /><label for='鳥'>鳥</label><input type='radio' id='魚' value='195' name='liste-cles' /><label for='魚'>魚</label></span><span class="traits"><input type='radio' class='nb-traits' id='12' value='12' name='nb-traits-12' /><label for='12' class='ui-state-active'>12</label><input type='radio' id='黄' value='201' name='liste-cles' /><label for='黄'>黄</label><input type='radio' id='黒' value='203' name='liste-cles' /><label for='黒'>黒</label></span><span class="traits"><input type='radio' class='nb-traits' id='13' value='13' name='nb-traits-13' /><label for='13' class='ui-state-active'>13</label><input type='radio' id='鼓' value='207' name='liste-cles' /><label for='鼓'>鼓</label></span><span class="traits"><input type='radio' class='nb-traits' id='14' value='14' name='nb-traits-14' /><label for='14' class='ui-state-active'>14</label><input type='radio' id='鼻' value='209' name='liste-cles' /><label for='鼻'>鼻</label><input type='radio' id='齊' value='210' name='liste-cles' /><label for='齊'>齊</label></span><span class="traits"><input type='radio' class='nb-traits' id='15' value='15' name='nb-traits-15' /><label for='15' class='ui-state-active'>15</label><input type='radio' id='齒' value='211' name='liste-cles' /><label for='齒'>齒</label></span><span class="traits"><input type='radio' class='nb-traits' id='16' value='16' name='nb-traits-16' /><label for='16' class='ui-state-active'>16</label><input type='radio' id='龍' value='212' name='liste-cles' /><label for='龍'>龍</label><input type='radio' id='龜' value='213' name='liste-cles' /><label for='龜'>龜</label></div>
+
+            <hr class="separation" />
+
+            <h2>Résultat de la recherche</h2>
+
+            <div id="chargement-recherche">
+                <img src="http://jlptgo.com/images/ajax-loader.gif" alt="Chargement" id="chargement" />
+            </div>
+
+            <div id="resultat-recherche-kanji"></div>
+
+        </div>
+    </div>
+
+    </div>
+</div>
+</div>
+</div>
+
+<div id="page-footer">
+    <div class="wrapper">
+        <div id="footer">
+                    <p id="text-footer">
+                        2009-2015 | JLPT-Go! JLPT-語 | Dernière mise à jour : 11 octobre 2015<br />
+                        Testé et optimisé pour les navigateurs suivants : IE > 7 <img src="http://jlptgo.com/images/ie.png" alt="IE 7 minimum"/>, Chrome > 9.0 <img src="http://jlptgo.com/images/chrome.png" alt="Chrome"/>, Opera > 11 <img src="http://jlptgo.com/images/opera.png" alt="Opéra"/>, Firefox > 3.6 <img src="http://jlptgo.com/images/firefox.png" alt="Firefox"/>
+                    </p>
+            <a href="#back-top" id="back-top"></a>
+        </div>
+    </div>
+</div>
+
+</body>
+
+<!-- Mirrored from jlptgo.com/caracteres/kanjis-cles.php by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 05 Jan 2021 14:58:33 GMT -->
+</html>

@@ -1,0 +1,285 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd" >
+<html>
+    
+<!-- Mirrored from jlptgo.com/grammaire/categories-19 by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 05 Jan 2021 14:59:56 GMT -->
+<head>
+        <title>JLPT-Go Grammaire japonaise</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="keywords" content="grammaire, japonais, catégories, conjugaison, particules, suffixes" />
+	<meta name="description" content="Grammaire japonaise pour le JLPT triée par catégories" />
+
+        <link rel="shortcut icon" type="image/x-icon" href="http://jlptgo.com/images/favicon.ico" />
+<link rel="stylesheet" type="text/css" href="http://jlptgo.com/css/general.css" media="all" />
+<link type="text/css" href="http://jlptgo.com/css/custom-theme/jquery-ui-1.8.9.custom.css" rel="stylesheet" />
+<link rel="stylesheet" type="text/css" href="http://jlptgo.com/css/BreadCrumb.css" media="all" />
+<link rel="stylesheet" type="text/css" href="http://jlptgo.com/css/tipsy.css" media="all" />
+
+<script type="text/javascript" src="http://jlptgo.com/js/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="http://jlptgo.com/js/jquery-ui-1.8.9.custom.min.js"></script>
+<script type="text/javascript" src="http://jlptgo.com/js/jquery.jBreadCrumb.1.1.js"></script>
+<script type="text/javascript" src="http://jlptgo.com/js/jquery.tipsy.js"></script>
+
+		<script>
+		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		  })(window,document,'script','../../www.google-analytics.com/analytics.js','ga');
+
+		  ga('create', 'UA-68690701-1', 'auto');
+		  ga('send', 'pageview');
+
+		</script>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+
+        // Accordéon
+        $("#accordion").accordion({
+            header: "h3",
+            autoHeight:false,
+            animated:false,
+            icons: {header: "ui-icon-circle-arrow-e",headerSelected: "ui-icon-circle-arrow-s"}
+        });
+
+        // Breadcrumb
+        $("#breadcrumbs").jBreadCrumb({easing:'swing'});
+    });
+</script>        <link rel="stylesheet" type="text/css" href="http://jlptgo.com/css/datatable_jui.css" media="all" />
+        <script type="text/javascript" language="javascript" src="http://jlptgo.com/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                
+                $('#accordion').accordion('activate', 2);
+                $('#accordion').accordion('option', 'animated', 'slide');
+                $('#menu-categorie-grammaire input').button();
+
+                $('.tableau-grammaire').dataTable( {
+                    "bJQueryUI": true,
+                    "bRetrieve":true,
+                    "bLengthChange": false,
+                    "bPaginate": false,
+                    "bInfo": false,
+                    "oLanguage": {"sUrl": "../imports/datatables_trad_fr.txt"},
+                    "fnDrawCallback": function(){
+                        $('td').bind('mouseenter', function () { $(this).parent().children().each(function(){$(this).addClass('datatablerowhighlight');}); });
+                        $('td').bind('mouseleave', function () { $(this).parent().children().each(function(){$(this).removeClass('datatablerowhighlight');}); });
+                    }
+                });
+            });
+        </script>
+    </head>
+
+    <body>
+    <a href="#back-top" id="back-top"></a>
+
+    <div id="page-header">
+        <div class="page-header-1">
+            <div class="wrapper">
+                <div id="header">
+                        <div id="liens-header">
+                            <a id="lien-header-1" title ="Kanjis" class="lien-header ui-corner-all" href="../caracteres/kanjis.html"></a>
+                            <a id="lien-header-2" title ="Grammaire pour le JLPT" class="lien-header ui-corner-all" href="jlpt.html"></a>
+                            <a id="lien-header-3" title ="Grammaire pour le JLPT N4" class="lien-header ui-corner-all" href="jlpt-N4.html"></a>
+                            <a id="lien-header-4" title ="Kanjis pour le JLPT" class="lien-header ui-corner-all" href="../caracteres/kanjis-jlpt.html#ui-tabs-3"></a>
+                            <a id="lien-header-5" title ="Hiraganas" class="lien-header ui-corner-all" href="../caracteres/hiraganas.html"></a>
+                            <a id="lien-header-6" title ="Examen du JLPT" class="lien-header ui-corner-all" href="../autres/examen-jlpt.html"></a>
+                            <a id="lien-header-7" title ="Test de kanjis pour le JLPT N5" class="lien-header ui-corner-all" href="../exercices/kanjis-jlpt-N5.html"></a>
+                            <a id="lien-header-8" title ="Liens divers"  class="lien-header ui-corner-all" href="../autres/liens.html"></a>
+                            <a id="lien-header-9" title ="Conjugaison japonaise"  class="lien-header ui-corner-all" href="conjugaison.html"></a>
+                            <a id="lien-header-10" title ="Vocabulaire du JLPT"  class="lien-header ui-corner-all" href="../vocabulaire/jlpt.html"></a>
+                            <a id="lien-header-11" title ="Katakanas"  class="lien-header ui-corner-all" href="../caracteres/katakanas.html"></a>
+                        </div>
+                    <div id="logo"><a id="index-site" title="Index du site" href="../index-2.html"> </a></div>
+                    <div id="mail"><a id="contact-mail" title="Contact" href="../autres/contact.html"></a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="page-middle">
+        <div class="page-middle-1">
+            <div class="wrapper">
+                <div id="middle">
+                    <div id="left">
+                        <div id="accordion">
+
+                            <div>
+                                <h3><a href="#">Accueil | ホームページ</a></h3>
+                                <ul class="nav_links">
+                                    <li>
+                                        <a href="../index-2.html">Présentation | 紹介</a>
+                                    </li>
+                                    <li>
+                                        <a href="../autres/actualites.html">Actualités | ニュース</a>
+                                    </li>
+                                    <li>
+                                        <a href="../autres/examen-jlpt.html">JLPT | 日本語能力試験</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div>
+                                <h3><a href="#">Vocabulaire | 語彙</a></h3>
+                                <ul class="nav_links">
+                                    <li>
+                                        <a href="../vocabulaire/jlpt.html">JLPT | 日本語能力試験</a>
+                                    </li>
+                                    <li>
+                                        <a href="../vocabulaire/categories.html">Catégories | カテゴリー</a>
+                                    </li>
+                                    <li>
+                                        <a href="../vocabulaire/themes.html">Thèmes | 類題</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div>
+                                <h3><a href="#">Grammaire | 文法</a></h3>
+                                <ul class="nav_links">
+                                    <li>
+                                        <a href="jlpt.html">JLPT | 日本語能力試験</a>
+                                    </li>
+                                    <li>
+                                        <a href="conjugaison.html">Conjugaison | 活用</a>
+                                    </li>
+                                    <li>
+                                        <a href="index.html">Index | 索引</a>
+                                    </li>
+                                    <li>
+                                        <a href="categories.html">Catégories | カテゴリー</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div>
+                                <h3><a href="#">Caractères | 字</a></h3>
+                                <ul class="nav_links">
+                                    <li>
+                                        <a href="../caracteres/hiraganas.html">Hiraganas | 平仮名</a>
+                                    </li>
+                                    <li>
+                                        <a href="../caracteres/katakanas.html">Katakanas | 片仮名</a>
+                                    </li>
+                                    <li>
+                                        <a href="../caracteres/kanjis.html">Kanjis | 漢字</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div>
+                                <h3><a href="#">Chaque jour | 毎日</a></h3>
+                                <ul class="nav_links">
+                                    <li>
+                                        <a href="../chaque-jour/mots-jour-jlpt.html">10 mots | 単語</a>
+                                    </li>
+                                    <li>
+                                        <a href="../chaque-jour/kanjis-jour-jlpt.html">3 kanjis | 漢字</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div>
+                                <h3><a href="#">Exercices | 練習</a></h3>
+                                <ul class="nav_links">
+                                    <li>
+                                        <a href="../exercices/vocabulaire-jlpt.html">Vocabulaire | 語彙</a>
+                                    </li>
+                                    <li>
+                                        <a href="../exercices/kanjis-jlpt.html">Kanjis | 漢字</a>
+                                    </li>
+                                    <li>
+                                        <a href="../exercices/kanas.html">Kanas | 仮名</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div>
+                                <h3><a href="#">Autre | その他</a></h3>
+                                <ul class="nav_links">
+                                    <li>
+                                        <a href="../autres/contact.html">Contact | 連絡</a>
+                                    </li>
+                                    <li>
+                                        <a href="../autres/liens.html">Liens | リンク集</a>
+                                    </li>
+                                    <li>
+                                        <a href="../autres/statistiques.html">Statistiques | 統計</a>
+                                    </li>
+                                    <li>
+                                        <a href="../autres/telechargement.html">Fichiers | ダウンロード</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+
+                        </div>
+                    </div>
+        <div id="main">
+
+            <div id="breadcrumbs" class="breadCrumb module">
+                <ul>
+                    <li>
+                        <a href="../index-2.html">Home</a>
+                    </li>
+                    <li>
+                        Grammaire
+                    </li>
+                    <li>
+                        <a href="categories.html">Catégories</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div id="content">
+
+                <h1>Grammaire : catégories | 文法</h1>
+
+            
+<div id="menu-categorie-grammaire">
+
+<input type='radio' id='1' value='1' name='liste-kanas' />
+        <label for='1'><a href='categories-1.html'>Suffixes  verbaux</a></label><input type='radio' id='2' value='2' name='liste-kanas' />
+        <label for='2'><a href='categories-2.html'>Impératif・demande</a></label><input type='radio' id='3' value='3' name='liste-kanas' />
+        <label for='3'><a href='categories-3.html'>Interdire・préférer・regretter</a></label><input type='radio' id='4' value='4' name='liste-kanas' />
+        <label for='4'><a href='categories-4.html'>Fin de phrase</a></label><input type='radio' id='5' value='5' name='liste-kanas' />
+        <label for='5'><a href='categories-5.html'>Conditionnel</a></label><input type='radio' id='6' value='6' name='liste-kanas' />
+        <label for='6'><a href='categories-6.html'>Faire・recevoir</a></label><input type='radio' id='7' value='7' name='liste-kanas' />
+        <label for='7'><a href='categories-7.html'>Pouvoir・devoir</a></label><input type='radio' id='8' value='8' name='liste-kanas' />
+        <label for='8'><a href='categories-8.html'>Volonté・décision・intention</a></label><input type='radio' id='9' value='9' name='liste-kanas' />
+        <label for='9'><a href='categories-9.html'>Keigo</a></label><input type='radio' id='10' value='10' name='liste-kanas' />
+        <label for='10'><a href='categories-10.html'>Changement・échanges</a></label><input type='radio' id='11' value='11' name='liste-kanas' />
+        <label for='11'><a href='categories-11.html'>Comparaisons・contraste</a></label><input type='radio' id='12' value='12' name='liste-kanas' />
+        <label for='12'><a href='categories-12.html'>Expériences・situation</a></label><input type='radio' id='13' value='13' name='liste-kanas' />
+        <label for='13'><a href='categories-13.html'>Causatif・passif</a></label><input type='radio' id='14' value='14' name='liste-kanas' />
+        <label for='14'><a href='categories-14.html'>Degré・niveau</a></label><input type='radio' id='15' value='15' name='liste-kanas' />
+        <label for='15'><a href='categories-15.html'>Raison・cause・origine</a></label><input type='radio' id='16' value='16' name='liste-kanas' />
+        <label for='16'><a href='categories-16.html'>Temps</a></label><input type='radio' id='17' value='17' name='liste-kanas' />
+        <label for='17'><a href='categories-17.html'>Seulement・même</a></label><input type='radio' id='18' value='18' name='liste-kanas' />
+        <label for='18'><a href='categories-18.html'>Particules</a></label><input type='radio' id='19' value='19' name='liste-kanas' />
+        <label for='19'><a href='categories-19.html'>Autres</a></label><input type='radio' id='20' value='20' name='liste-kanas' />
+        <label for='20'><a href='categories-20.html'>Tout</a></label></div>
+            <h2>Autres : liste des points de grammaire</h2><table class="tableau-grammaire display"><thead><tr><th>Japonais</th><th>Français</th></tr></thead><tbody><tr><td><a href="197-japonais-ageku-ni.html">ageku ni</a></td><td><a href="197-japonais-ageku-ni.html">finalement, en fin de compte</a></td></tr><tr><td><a href="241-japonais-dake-atte.html">dake atte</a></td><td><a href="241-japonais-dake-atte.html">comme on pouvait s'y attendre</a></td></tr><tr><td><a href="242-japonais-dake-ni.html">dake ni</a></td><td><a href="242-japonais-dake-ni.html">parce que ~, comme on pouvait s'y attendre</a></td></tr><tr><td><a href="182-japonais-darake.html">darake</a></td><td><a href="182-japonais-darake.html">plein de ~</a></td></tr><tr><td><a href="216-japonais-forme-conjonctive.html">forme conjonctive en -i</a></td><td><a href="216-japonais-forme-conjonctive.html">base verbale</a></td></tr><tr><td><a href="53-japonais-forme-masu.html">forme en -masu</a></td><td><a href="53-japonais-forme-masu.html">forme polie d'un verbe</a></td></tr><tr><td><a href="57-japonais-forme-neutre.html">forme en -ru, -u</a></td><td><a href="57-japonais-forme-neutre.html">forme neutre ou du dictionnaire</a></td></tr><tr><td><a href="20-japonais-forme-te.html">forme en -te</a></td><td><a href="20-japonais-forme-te.html">forme verbale</a></td></tr><tr><td><a href="200-japonais-ge.html">ge</a></td><td><a href="200-japonais-ge.html">avoir l'air de ~</a></td></tr><tr><td><a href="72-japonais-goro-gurai.html">goro, gurai et yaku</a></td><td><a href="72-japonais-goro-gurai.html">environ ~</a></td></tr><tr><td><a href="130-japonais-ha-tomokaku.html">ha tomokaku</a></td><td><a href="130-japonais-ha-tomokaku.html">sans tenir compte de ~, en faisant abstraction de ~</a></td></tr><tr><td><a href="120-japonais-hitsuyou.html">hitsuyô</a></td><td><a href="120-japonais-hitsuyou.html">évoquer le nécessaire</a></td></tr><tr><td><a href="85-japonais-ichi-ou.html">ichiô</a></td><td><a href="85-japonais-ichi-ou.html">au cas où, quand même</a></td></tr><tr><td><a href="124-japonais-igai-no.html">igai no</a></td><td><a href="124-japonais-igai-no.html">autre que ~, excepté ~</a></td></tr><tr><td><a href="121-japonais-ippou-da.html">ippô da</a></td><td><a href="121-japonais-ippou-da.html">indiquer qu'une action suit de plus en plus une certaine tendance</a></td></tr><tr><td><a href="123-japonais-ka-dou-ka.html">ka dô ka</a></td><td><a href="123-japonais-ka-dou-ka.html">si oui ou non</a></td></tr><tr><td><a href="205-japonais-kara-ni-kakete.html">kara ~ ni kakete</a></td><td><a href="205-japonais-kara-ni-kakete.html">de ~ à ~</a></td></tr><tr><td><a href="129-japonais-ki-ga-suru.html">ki ga suru</a></td><td><a href="129-japonais-ki-ga-suru.html">avoir l'impression de ~</a></td></tr><tr><td><a href="39-japonais-ki-ni-suru-naru.html">ki ni suru et ki ni naru</a></td><td><a href="39-japonais-ki-ni-suru-naru.html">être préoccupé, se sentir inquiet</a></td></tr><tr><td><a href="233-japonais-koto-dakara.html">koto dakara</a></td><td><a href="233-japonais-koto-dakara.html">c'est typique de ~, étant donné que ~</a></td></tr><tr><td><a href="236-japonais-koto-ha-nai.html">koto ha nai</a></td><td><a href="236-japonais-koto-ha-nai.html">ne pas être nécessaire de ~</a></td></tr><tr><td><a href="234-japonais-koto-naku.html">koto naku</a></td><td><a href="234-japonais-koto-naku.html">sans ~</a></td></tr><tr><td><a href="285-japonais-mai-ka.html">mai ka</a></td><td><a href="285-japonais-mai-ka.html">ne pas savoir si oui ou non ~</a></td></tr><tr><td><a href="98-japonais-mou-mada.html">mô et mada</a></td><td><a href="98-japonais-mou-mada.html">déjà ~, ne ~ plus, encore ~, pas encore ~</a></td></tr><tr><td><a href="176-japonais-mo-kamawazu.html">mo kamawazu</a></td><td><a href="176-japonais-mo-kamawazu.html">sans se soucier de ~</a></td></tr><tr><td><a href="106-japonais-mono-ga-aru.html">mono ga aru</a></td><td><a href="106-japonais-mono-ga-aru.html">avoir l'impression de ~, ressentir quelque chose</a></td></tr><tr><td><a href="287-japonais-muke.html">muke</a></td><td><a href="287-japonais-muke.html">destiné à ~</a></td></tr><tr><td><a href="286-japonais-muki.html">muki</a></td><td><a href="286-japonais-muki.html">être adapté à ~</a></td></tr><tr><td><a href="211-japonais-ni-kakawarazu.html">ni kakawarazu, ni kakawarinaku</a></td><td><a href="211-japonais-ni-kakawarazu.html">peu importe ~</a></td></tr><tr><td><a href="268-japonais-ni-kakete-ha.html">ni kakete ha, ni kakete mo</a></td><td><a href="268-japonais-ni-kakete-ha.html">concernant ~, en parlant de ~</a></td></tr><tr><td><a href="269-japonais-ni-kan-shite.html">ni kan shite</a></td><td><a href="269-japonais-ni-kan-shite.html">concernant ~, à propos de ~</a></td></tr><tr><td><a href="270-japonais-ni-kimatte-iru.html">ni kimatte iru</a></td><td><a href="270-japonais-ni-kimatte-iru.html">sans aucun doute, c'est certain que ~</a></td></tr><tr><td><a href="96-japonais-ni-kuwaete.html">ni kuwaete</a></td><td><a href="96-japonais-ni-kuwaete.html">en plus de ~</a></td></tr><tr><td><a href="118-japonais-ni-soui-nai.html">ni sôi nai</a></td><td><a href="118-japonais-ni-soui-nai.html">sûrement, sans aucun doute</a></td></tr><tr><td><a href="107-japonais-ni-taishite.html">ni taishite</a></td><td><a href="107-japonais-ni-taishite.html">envers ~, à l'encontre de ~</a></td></tr><tr><td><a href="275-japonais-ni-tsuite.html">ni tsuite</a></td><td><a href="275-japonais-ni-tsuite.html">concernant ~, à propos de ~</a></td></tr><tr><td><a href="128-japonais-nidoto.html">nidoto</a></td><td><a href="128-japonais-nidoto.html">plus jamais</a></td></tr><tr><td><a href="166-japonais-nuki-de.html">nuki de, nuki no</a></td><td><a href="166-japonais-nuki-de.html">sans ~</a></td></tr><tr><td><a href="222-japonais-osore-ga-aru.html">osore ga aru</a></td><td><a href="222-japonais-osore-ga-aru.html">j'ai bien peur que ~, c'est malheureusement probable que ~</a></td></tr><tr><td><a href="249-japonais-ppoi.html">ppoi</a></td><td><a href="249-japonais-ppoi.html">paraitre ~, ressembler ~</a></td></tr><tr><td><a href="159-japonais-shi.html">shi</a></td><td><a href="159-japonais-shi.html">énumérer des états et évoquer des raisons multiples</a></td></tr><tr><td><a href="87-japonais-to-ieba.html">to ieba</a></td><td><a href="87-japonais-to-ieba.html">en parlant de ~</a></td></tr><tr><td><a href="258-japonais-to-ittara.html">to ittara</a></td><td><a href="258-japonais-to-ittara.html">en parlant de ~, à propos de ~</a></td></tr><tr><td><a href="172-japonais-to-iu-tte.html">to iu</a></td><td><a href="172-japonais-to-iu-tte.html">appelé ~, nommé ~, du nom de ~, qui s'appelle ~</a></td></tr><tr><td><a href="254-japonais-to-iu-koto-da.html">to iu koto da</a></td><td><a href="254-japonais-to-iu-koto-da.html">j'ai entendu que ~, cela veut dire que ~</a></td></tr><tr><td><a href="256-japonais-to-iu-mono-da.html">to iu mono da</a></td><td><a href="256-japonais-to-iu-mono-da.html">je pense que ~, c'est ~</a></td></tr><tr><td><a href="257-japonais-to-iu-mono-deha-nai.html">to iu mono deha nai</a></td><td><a href="257-japonais-to-iu-mono-deha-nai.html">cela ne veut pas dire que ~, ce n'est pas nécessairement ~</a></td></tr><tr><td><a href="86-japonais-to-iu-no-ha.html">to iu no ha</a></td><td><a href="86-japonais-to-iu-no-ha.html">vouloir dire ou parler de quelque chose</a></td></tr><tr><td><a href="255-japonais-to-iu-to.html">to iu to</a></td><td><a href="255-japonais-to-iu-to.html">en parlant de ~, à propos de ~</a></td></tr><tr><td><a href="261-japonais-toka.html">toka</a></td><td><a href="261-japonais-toka.html">il semblerait que ~, j'ai entendu dire que ~</a></td></tr><tr><td><a href="260-japonais-toori-ni.html">toori ni, doori ni</a></td><td><a href="260-japonais-toori-ni.html">comme ~</a></td></tr><tr><td><a href="77-japonais-tara-dou-desu-ka.html">verbe -ta + ra + dô desu ka</a></td><td><a href="77-japonais-tara-dou-desu-ka.html">proposer une suggestion</a></td></tr><tr><td><a href="127-japonais-te-mo-shouganai-shikataganai.html">verbe -te + mo + shôganai ou shikataganai</a></td><td><a href="127-japonais-te-mo-shouganai-shikataganai.html">ne servir à rien de faire quelque chose</a></td></tr><tr><td><a href="148-japonais-te-yokatta.html">verbe -te + yokatta</a></td><td><a href="148-japonais-te-yokatta.html">être content que ~</a></td></tr><tr><td><a href="94-japonais-wake-desu.html">wake desu</a></td><td><a href="94-japonais-wake-desu.html">il est naturel que ~, c'est parce que ~</a></td></tr><tr><td><a href="245-japonais-wo-chuushin-ni.html">wo chûshin ni</a></td><td><a href="245-japonais-wo-chuushin-ni.html">centré sur ~, autour de ~</a></td></tr><tr><td><a href="163-japonais-wo-megutte.html">wo megutte</a></td><td><a href="163-japonais-wo-megutte.html">à propos de ~, autour de ~, concernant ~</a></td></tr><tr><td><a href="210-japonais-wo-ha-towazu.html">wo towazu, ha towazu</a></td><td><a href="210-japonais-wo-ha-towazu.html">sans lien avec ~, quelque soit ~</a></td></tr><tr><td><a href="196-japonais-wo-tsuujite-tooshite.html">wo tsûjite, wo tooshite</a></td><td><a href="196-japonais-wo-tsuujite-tooshite.html">durant ~, à travers ~, par l'intermédiaire de ~</a></td></tr><tr><td><a href="294-japonais-yara-yara.html">~ yara ~ yara</a></td><td><a href="294-japonais-yara-yara.html">des choses comme ~ et ~ entre autres</a></td></tr></tbody></table>
+        </div>
+    </div>
+
+    </div>
+</div>
+</div>
+</div>
+
+<div id="page-footer">
+    <div class="wrapper">
+        <div id="footer">
+                    <p id="text-footer">
+                        2009-2015 | JLPT-Go! JLPT-語 | Dernière mise à jour : 11 octobre 2015<br />
+                        Testé et optimisé pour les navigateurs suivants : IE > 7 <img src="http://jlptgo.com/images/ie.png" alt="IE 7 minimum"/>, Chrome > 9.0 <img src="http://jlptgo.com/images/chrome.png" alt="Chrome"/>, Opera > 11 <img src="http://jlptgo.com/images/opera.png" alt="Opéra"/>, Firefox > 3.6 <img src="http://jlptgo.com/images/firefox.png" alt="Firefox"/>
+                    </p>
+            <a href="#back-top" id="back-top"></a>
+        </div>
+    </div>
+</div>
+
+</body>
+
+<!-- Mirrored from jlptgo.com/grammaire/categories-19 by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 05 Jan 2021 14:59:56 GMT -->
+</html>

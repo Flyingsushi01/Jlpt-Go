@@ -1,0 +1,349 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd" >
+<html>
+    
+<!-- Mirrored from jlptgo.com/vocabulaire/categories.php by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 05 Jan 2021 14:34:14 GMT -->
+<head>
+        <title>Go-I Vocabulaire japonais par catégories grammaticales</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="keywords" content="vocabulaire, mots, JLPT, japonais, noryoku shiken, 日本語能力試験, liste, 単語, 語彙, go-i, N1, N2, N3, N4, N5" />
+	<meta name="description" content="Vocabulaire japonais trié par catégorie grammaticale et par niveau JLPT" />
+        <link rel="shortcut icon" type="image/x-icon" href="http://jlptgo.com/images/favicon.ico" />
+<link rel="stylesheet" type="text/css" href="http://jlptgo.com/css/general.css" media="all" />
+<link type="text/css" href="http://jlptgo.com/css/custom-theme/jquery-ui-1.8.9.custom.css" rel="stylesheet" />
+<link rel="stylesheet" type="text/css" href="http://jlptgo.com/css/BreadCrumb.css" media="all" />
+<link rel="stylesheet" type="text/css" href="http://jlptgo.com/css/tipsy.css" media="all" />
+
+<script type="text/javascript" src="http://jlptgo.com/js/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="http://jlptgo.com/js/jquery-ui-1.8.9.custom.min.js"></script>
+<script type="text/javascript" src="http://jlptgo.com/js/jquery.jBreadCrumb.1.1.js"></script>
+<script type="text/javascript" src="http://jlptgo.com/js/jquery.tipsy.js"></script>
+
+		<script>
+		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		  })(window,document,'script','../../www.google-analytics.com/analytics.js','ga');
+
+		  ga('create', 'UA-68690701-1', 'auto');
+		  ga('send', 'pageview');
+
+		</script>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+
+        // Accordéon
+        $("#accordion").accordion({
+            header: "h3",
+            autoHeight:false,
+            animated:false,
+            icons: {header: "ui-icon-circle-arrow-e",headerSelected: "ui-icon-circle-arrow-s"}
+        });
+
+        // Breadcrumb
+        $("#breadcrumbs").jBreadCrumb({easing:'swing'});
+    });
+</script>        <link rel="stylesheet" type="text/css" href="http://jlptgo.com/css/datatable_jui.css" media="all" />
+        <script type="text/javascript" language="javascript" src="http://jlptgo.com/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" charset="utf-8">
+            $(document).ready(function() {
+                
+                // Menus
+                $('#accordion').accordion('activate', 1);
+                $('#accordion').accordion('option', 'animated', 'slide');
+                
+                $("#menu-categorie").buttonset();
+                $("#menu-sous-categorie").buttonset();
+                $("#menu-jlpt").buttonset();
+
+                $('#menu-categorie input').live('click', function() {
+                    var categorie=$('input[type=radio][name=menu-categorie]:checked').attr('value');
+                    if (categorie == 'adj'){
+                        $("#menu-sous-categorie").html("<input type='radio' id='adj-no' value='adj-no' name='menu-sous-categorie' /><label for='adj-no'>Adjectif en の</label><input type='radio' id='adj-na' value='adj-na' name='menu-sous-categorie' /><label for='adj-na'>Adjectif en な</label><input type='radio' id='adj-i' value='adj-i' name='menu-sous-categorie' /><label for='adj-i'>Adjectif en い</label>");
+                    }else if (categorie == 'nom'){
+                        $("#menu-sous-categorie").html("<input type='radio' id='n' value='n' name='menu-sous-categorie' /><label for='n'>Nom commun</label><input type='radio' id='np' value='np' name='menu-sous-categorie' /><label for='np'>Nom propre</label><input type='radio' id='pn' value='pn' name='menu-sous-categorie' /><label for='pn'>Pronom</label><input type='radio' id='dem' value='dem' name='menu-sous-categorie' /><label for='dem'>Démonstratif</label><input type='radio' id='int' value='int' name='menu-sous-categorie' /><label for='int'>Interrogatif</label>");
+                    }else if (categorie == 'verbe'){
+                        $("#menu-sous-categorie").html("<input type='radio' id='v1' value='v1' name='menu-sous-categorie' /><label for='v1'>Ichidan</label><input type='radio' id='v5' value='v5' name='menu-sous-categorie' /><label for='v5'>Godan</label><input type='radio' id='v5s' value='v5s' name='menu-sous-categorie' /><label for='v5s'>Avec 行く・来る</label><input type='radio' id='vs' value='vs' name='menu-sous-categorie' /><label for='vs'>Avec する</label>");
+                    }else if (categorie == 'adv'){
+                        $("#menu-sous-categorie").html("<input type='radio' id='man' value='man' name='menu-sous-categorie' /><label for='man'>Manière</label><input type='radio' id='lieux' value='lieux' name='menu-sous-categorie' /><label for='lieux'>Lieux</label><input type='radio' id='ng' value='ng' name='menu-sous-categorie' /><label for='ng'>Négation</label><input type='radio' id='aff' value='aff' name='menu-sous-categorie' /><label for='aff'>Affirmation</label><input type='radio' id='tps' value='tps' name='menu-sous-categorie' /><label for='tps'>Temps</label><input type='radio' id='qtt' value='qtt' name='menu-sous-categorie' /><label for='qtt'>Quantité</label>");
+                    }else if (categorie == 'gairaigo'){
+                        $("#menu-sous-categorie").html("<input type='radio' id='sc-tous' value='sc-tous' name='menu-sous-categorie' checked='checked' /><label for='sc-tous'>Tous</label>");
+                    }else if (categorie == 'autre'){
+                        $("#menu-sous-categorie").html("<input type='radio' id='exp' value='exp' name='menu-sous-categorie' /><label for='exp'>Expressions</label><input type='radio' id='pol' value='pol' name='menu-sous-categorie' /><label for='pol'>Politesse</label><input type='radio' id='conj' value='conj' name='menu-sous-categorie' /><label for='conj'>Conjonction</label><input type='radio' id='num' value='num' name='menu-sous-categorie' /><label for='num'>Numéral</label><input type='radio' id='pref' value='pref' name='menu-sous-categorie' /><label for='pref'>Préfixe</label><input type='radio' id='suf' value='suf' name='menu-sous-categorie' /><label for='suf'>Suffixe</label>");
+                    }else if (categorie == 'tous'){
+                        $("#menu-sous-categorie").html("<input type='radio' id='sc-tous' value='sc-tous' name='menu-sous-categorie' checked='checked' /><label for='sc-tous'>Tous</label>");
+                    }
+                    $("#menu-sous-categorie").buttonset();
+                    oTable.fnDraw();
+                });
+
+                $('#menu-sous-categorie input').live('click', function() {
+                    oTable.fnDraw();
+                });
+                $('#menu-jlpt input').live('click', function() {
+                    oTable.fnDraw();
+                });
+               
+                oTable = $('#datatable').dataTable( {
+                    "bProcessing": true,
+                    "bServerSide": true,
+                    "bJQueryUI": true,
+                    "sPaginationType": "full_numbers",
+                    "bAutoWidth": false,
+                    "aoColumns": [{"sWidth":"60%"},{"sWidth":"20%"},{"sWidth":"20%"}],
+                    "oLanguage": {"sUrl": "../imports/datatables_trad_fr.txt"},
+                    "sAjaxSource": "../traitements/get_data.php",
+                    "fnServerData": function ( sSource, aoData, fnCallback ) {
+                        var categorie=$('input[type=radio][name=menu-categorie]:checked').attr('value');
+                        var sscategorie=$('input[type=radio][name=menu-sous-categorie]:checked').attr('value');
+                        var jlpt=$('input[type=radio][name=menu-jlpt]:checked').attr('value');
+			/* Add some extra data to the sender */
+			aoData.push( { "name": "categorie", "value": categorie } );
+                        aoData.push( { "name": "sscategorie", "value": sscategorie } );
+                        aoData.push( { "name": "jlpt", "value": jlpt } );
+                        $.getJSON( sSource, aoData, function (json) {
+                            /* Do whatever additional processing you want on the callback, then tell DataTables */
+                            fnCallback(json)
+			} );
+                     }
+                } );
+            } );
+        </script>
+    </head>
+
+    <body>
+    <a href="#back-top" id="back-top"></a>
+
+    <div id="page-header">
+        <div class="page-header-1">
+            <div class="wrapper">
+                <div id="header">
+                        <div id="liens-header">
+                            <a id="lien-header-1" title ="Kanjis" class="lien-header ui-corner-all" href="../caracteres/kanjis.html"></a>
+                            <a id="lien-header-2" title ="Grammaire pour le JLPT" class="lien-header ui-corner-all" href="../grammaire/jlpt.html"></a>
+                            <a id="lien-header-3" title ="Grammaire pour le JLPT N4" class="lien-header ui-corner-all" href="../grammaire/jlpt-N4.html"></a>
+                            <a id="lien-header-4" title ="Kanjis pour le JLPT" class="lien-header ui-corner-all" href="../caracteres/kanjis-jlpt.html#ui-tabs-3"></a>
+                            <a id="lien-header-5" title ="Hiraganas" class="lien-header ui-corner-all" href="../caracteres/hiraganas.html"></a>
+                            <a id="lien-header-6" title ="Examen du JLPT" class="lien-header ui-corner-all" href="../autres/examen-jlpt.html"></a>
+                            <a id="lien-header-7" title ="Test de kanjis pour le JLPT N5" class="lien-header ui-corner-all" href="../exercices/kanjis-jlpt-N5.html"></a>
+                            <a id="lien-header-8" title ="Liens divers"  class="lien-header ui-corner-all" href="../autres/liens.html"></a>
+                            <a id="lien-header-9" title ="Conjugaison japonaise"  class="lien-header ui-corner-all" href="../grammaire/conjugaison.html"></a>
+                            <a id="lien-header-10" title ="Vocabulaire du JLPT"  class="lien-header ui-corner-all" href="jlpt.html"></a>
+                            <a id="lien-header-11" title ="Katakanas"  class="lien-header ui-corner-all" href="../caracteres/katakanas.html"></a>
+                        </div>
+                    <div id="logo"><a id="index-site" title="Index du site" href="../index-2.html"> </a></div>
+                    <div id="mail"><a id="contact-mail" title="Contact" href="../autres/contact.html"></a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="page-middle">
+        <div class="page-middle-1">
+            <div class="wrapper">
+                <div id="middle">
+                    <div id="left">
+                        <div id="accordion">
+
+                            <div>
+                                <h3><a href="#">Accueil | ホームページ</a></h3>
+                                <ul class="nav_links">
+                                    <li>
+                                        <a href="../index-2.html">Présentation | 紹介</a>
+                                    </li>
+                                    <li>
+                                        <a href="../autres/actualites.html">Actualités | ニュース</a>
+                                    </li>
+                                    <li>
+                                        <a href="../autres/examen-jlpt.html">JLPT | 日本語能力試験</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div>
+                                <h3><a href="#">Vocabulaire | 語彙</a></h3>
+                                <ul class="nav_links">
+                                    <li>
+                                        <a href="jlpt.html">JLPT | 日本語能力試験</a>
+                                    </li>
+                                    <li>
+                                        <a href="categories.html">Catégories | カテゴリー</a>
+                                    </li>
+                                    <li>
+                                        <a href="themes.html">Thèmes | 類題</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div>
+                                <h3><a href="#">Grammaire | 文法</a></h3>
+                                <ul class="nav_links">
+                                    <li>
+                                        <a href="../grammaire/jlpt.html">JLPT | 日本語能力試験</a>
+                                    </li>
+                                    <li>
+                                        <a href="../grammaire/conjugaison.html">Conjugaison | 活用</a>
+                                    </li>
+                                    <li>
+                                        <a href="../grammaire/index.html">Index | 索引</a>
+                                    </li>
+                                    <li>
+                                        <a href="../grammaire/categories.html">Catégories | カテゴリー</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div>
+                                <h3><a href="#">Caractères | 字</a></h3>
+                                <ul class="nav_links">
+                                    <li>
+                                        <a href="../caracteres/hiraganas.html">Hiraganas | 平仮名</a>
+                                    </li>
+                                    <li>
+                                        <a href="../caracteres/katakanas.html">Katakanas | 片仮名</a>
+                                    </li>
+                                    <li>
+                                        <a href="../caracteres/kanjis.html">Kanjis | 漢字</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div>
+                                <h3><a href="#">Chaque jour | 毎日</a></h3>
+                                <ul class="nav_links">
+                                    <li>
+                                        <a href="../chaque-jour/mots-jour-jlpt.html">10 mots | 単語</a>
+                                    </li>
+                                    <li>
+                                        <a href="../chaque-jour/kanjis-jour-jlpt.html">3 kanjis | 漢字</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div>
+                                <h3><a href="#">Exercices | 練習</a></h3>
+                                <ul class="nav_links">
+                                    <li>
+                                        <a href="../exercices/vocabulaire-jlpt.html">Vocabulaire | 語彙</a>
+                                    </li>
+                                    <li>
+                                        <a href="../exercices/kanjis-jlpt.html">Kanjis | 漢字</a>
+                                    </li>
+                                    <li>
+                                        <a href="../exercices/kanas.html">Kanas | 仮名</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div>
+                                <h3><a href="#">Autre | その他</a></h3>
+                                <ul class="nav_links">
+                                    <li>
+                                        <a href="../autres/contact.html">Contact | 連絡</a>
+                                    </li>
+                                    <li>
+                                        <a href="../autres/liens.html">Liens | リンク集</a>
+                                    </li>
+                                    <li>
+                                        <a href="../autres/statistiques.html">Statistiques | 統計</a>
+                                    </li>
+                                    <li>
+                                        <a href="../autres/telechargement.html">Fichiers | ダウンロード</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+
+                        </div>
+                    </div>
+        <div id="main">
+
+            <div id="breadcrumbs" class="breadCrumb module">
+                <ul>
+                    <li>
+                        <a href="../index-2.html">Home</a>
+                    </li>
+                    <li>
+                        Vocabulaire
+                    </li>
+                    <li>
+                        <a href="categories.html">Catégories</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div id="content">
+
+                <h1>Mots | 単語</h1>
+
+                
+                <div id="menu-categorie">
+                    <input type='radio' id='tous' value='tous' name='menu-categorie' checked='checked' /><label for='tous'>Tous</label>
+                    <input type="radio" id="adj" value="adj" name="menu-categorie" /><label for="adj">Adjectifs</label>
+                    <input type="radio" id="nom" value="nom" name="menu-categorie" /><label for="nom">Noms</label>
+                    <input type="radio" id="verbe" value="verbe" name="menu-categorie" /><label for="verbe">Verbes</label>
+                    <input type="radio" id="adv" value="adv" name="menu-categorie" /><label for="adv">Adverbes</label>
+                    <input type="radio" id="gairaigo" value="gairaigo" name="menu-categorie" /><label for="gairaigo">Gairaigo</label>
+                    <input type="radio" id="autre" value="autre" name="menu-categorie" /><label for="autre">Autres</label>
+                </div>
+                <br />
+                
+                <div id="menu-sous-categorie">
+                    <input type='radio' id='sc-tous' value='sc-tous' name='menu-sous-categorie' checked='checked' /><label for='sc-tous'>Tous</label>
+                </div>
+                <br />
+
+                <div id="menu-jlpt">
+                    <input type="radio" id="jlpt-tous" value="jlpt-tous" name="menu-jlpt" checked='checked' /><label for="jlpt-tous">Tous</label>
+                    <input type="radio" id="jlpt5" value="5" name="menu-jlpt" /><label for="jlpt5">JLPT N5</label>
+                    <input type="radio" id="jlpt4" value="4" name="menu-jlpt" /><label for="jlpt4">JLPT N4</label>
+                    <input type="radio" id="jlpt3" value="3" name="menu-jlpt" /><label for="jlpt3">JLPT N3</label>
+                    <input type="radio" id="jlpt2" value="2" name="menu-jlpt" /><label for="jlpt2">JLPT N2</label>
+                    <input type="radio" id="jlpt1" value="1" name="menu-jlpt" /><label for="jlpt1">JLPT N1</label>
+                </div>
+                 <br />
+                
+
+                
+                <table id="datatable" class="display" >
+                    <thead>
+                        <tr>
+                            <th>Sens</th>
+                            <th>Kana</th>
+                            <th>Kanji</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td colspan="3">Chargement des données...</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+
+
+
+            </div>
+        </div>
+
+    </div>
+</div>
+</div>
+</div>
+
+<div id="page-footer">
+    <div class="wrapper">
+        <div id="footer">
+                    <p id="text-footer">
+                        2009-2015 | JLPT-Go! JLPT-語 | Dernière mise à jour : 11 octobre 2015<br />
+                        Testé et optimisé pour les navigateurs suivants : IE > 7 <img src="http://jlptgo.com/images/ie.png" alt="IE 7 minimum"/>, Chrome > 9.0 <img src="http://jlptgo.com/images/chrome.png" alt="Chrome"/>, Opera > 11 <img src="http://jlptgo.com/images/opera.png" alt="Opéra"/>, Firefox > 3.6 <img src="http://jlptgo.com/images/firefox.png" alt="Firefox"/>
+                    </p>
+            <a href="#back-top" id="back-top"></a>
+        </div>
+    </div>
+</div>
+
+</body>
+
+<!-- Mirrored from jlptgo.com/vocabulaire/categories.php by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 05 Jan 2021 14:34:14 GMT -->
+</html>

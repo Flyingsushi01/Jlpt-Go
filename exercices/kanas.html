@@ -1,0 +1,379 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd" >
+<html>
+    
+<!-- Mirrored from jlptgo.com/exercices/kanas.php by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 05 Jan 2021 14:34:26 GMT -->
+<head>
+        <title>JLPT-Go Exercice sur les kanas</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="keywords" content="hiraganas, hiragana, katakanas, katakanas, kanas, entrainement, entrainer, tester, exercice" />
+	<meta name="description" content="Exercice pour s'entrainer sur les kanas japonais : hiraganas et katakanas" />
+        <link rel="shortcut icon" type="image/x-icon" href="http://jlptgo.com/images/favicon.ico" />
+<link rel="stylesheet" type="text/css" href="http://jlptgo.com/css/general.css" media="all" />
+<link type="text/css" href="http://jlptgo.com/css/custom-theme/jquery-ui-1.8.9.custom.css" rel="stylesheet" />
+<link rel="stylesheet" type="text/css" href="http://jlptgo.com/css/BreadCrumb.css" media="all" />
+<link rel="stylesheet" type="text/css" href="http://jlptgo.com/css/tipsy.css" media="all" />
+
+<script type="text/javascript" src="http://jlptgo.com/js/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="http://jlptgo.com/js/jquery-ui-1.8.9.custom.min.js"></script>
+<script type="text/javascript" src="http://jlptgo.com/js/jquery.jBreadCrumb.1.1.js"></script>
+<script type="text/javascript" src="http://jlptgo.com/js/jquery.tipsy.js"></script>
+
+		<script>
+		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		  })(window,document,'script','../../www.google-analytics.com/analytics.js','ga');
+
+		  ga('create', 'UA-68690701-1', 'auto');
+		  ga('send', 'pageview');
+
+		</script>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+
+        // Accordéon
+        $("#accordion").accordion({
+            header: "h3",
+            autoHeight:false,
+            animated:false,
+            icons: {header: "ui-icon-circle-arrow-e",headerSelected: "ui-icon-circle-arrow-s"}
+        });
+
+        // Breadcrumb
+        $("#breadcrumbs").jBreadCrumb({easing:'swing'});
+    });
+</script>        <link rel="stylesheet" type="text/css" href="http://jlptgo.com/css/customInput.css" media="all" />
+        <script type="text/javascript" src="http://jlptgo.com/js/customInput.jquery.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                // Menus
+                $('#accordion').accordion('activate', 5);
+                $('#accordion').accordion('option', 'animated', 'slide');
+                $('input').customInput();
+
+                // Cocher/décocher tout
+                $('.toggle').live('click', function() {
+                    nom = $(this).attr('name');
+                    if(this.checked){
+                        $("input[name=" + nom + "][type='checkbox']").attr('checked', true);
+                        $("input:not(.toggle)[name=" + nom + "][type='checkbox']").next().addClass('checked disabled');
+                        $("input:not(.toggle)[name=" + nom + "][type='checkbox']").attr("disabled", true);
+                    }else{
+                        $("input[name=" + nom + "][type='checkbox']").attr('checked', false);
+                        $("input:not(.toggle)[name=" + nom + "][type='checkbox']").next().removeClass('checked disabled');
+                        $("input:not(.toggle)[name=" + nom + "][type='checkbox']").attr("disabled", false);
+                    }
+                });
+
+                // Changer les checkbox suivant le type de kanas
+                 $('input:radio[name=choix_kana]').bind('click', function() {
+                    var type=$('input:radio[name=choix_kana]:checked').val();
+                    $('#choix_kanas').load('../imports/exercice-kanas-'+type+'.html', function() {
+                        $("input[type='checkbox']").customInput();
+                    });
+                });
+
+                // Récupération de la valeur des input
+                function listeCbox(){
+                    var idChecked=new Array();
+                    $("input:not(.toggle)[type=checkbox]:checked").each(function (box) {
+                        idChecked[box] = $(this).val();
+                    });
+                    return idChecked;
+                }
+
+                // Permet de connaître le résultat
+                function correction(reponse){
+                    var kana=$('#kana-quizz').html();
+                    var reponse=$('#reponse-kana').val();
+                    var resultat = $.trim($("#resultat-kana-quizz").html());
+                    if(resultat!=""){
+                        if(resultat==reponse){
+                            $('#reponse-kana-quizz').html("<div class='encart-juste ui-corner-all'>"+kana+" se prononce bien '"+resultat+"'</div>");
+                        }else{
+                            $('#reponse-kana-quizz').html("<div class='encart-faux ui-corner-all'>"+kana+" correspondait à '"+resultat+"'</div>");
+                        }
+                    }
+                }
+
+                // Test kana
+                $('#verifier-kana').live('click', function() {
+                    correction();
+                    var parametres=listeCbox();
+                    var type=$('input:radio[name=choix_kana]:checked').val();
+                    var checked = $("input:not(.toggle)[type=checkbox]:checked").length;
+                    if (checked != 0){
+                        $.ajax({
+                            type: "GET",
+                            cache: false,
+                            url: "../traitements/controleur.php",
+                            data: ({action:'exercice-kanas', parametres:parametres, type:type}),
+                            success: function(data){
+                                $('#donnees-kana-quizz').html(data);
+                                $('input#reponse-kana').val('');
+                                $('input#reponse-kana').focus();
+                                $("div#aucun-kana").remove();
+                            }
+                        });
+                    }else{
+                        $('#reponse-kana-quizz').html("<div id='aucun-kana' class='ui-state-highlight ui-corner-all'>Veuillez sélectionner au moins une série de kanas.</div>");
+                    }
+                });
+                
+            });
+
+        </script>
+    </head>
+
+    <body>
+    <a href="#back-top" id="back-top"></a>
+
+    <div id="page-header">
+        <div class="page-header-1">
+            <div class="wrapper">
+                <div id="header">
+                        <div id="liens-header">
+                            <a id="lien-header-1" title ="Kanjis" class="lien-header ui-corner-all" href="../caracteres/kanjis.html"></a>
+                            <a id="lien-header-2" title ="Grammaire pour le JLPT" class="lien-header ui-corner-all" href="../grammaire/jlpt.html"></a>
+                            <a id="lien-header-3" title ="Grammaire pour le JLPT N4" class="lien-header ui-corner-all" href="../grammaire/jlpt-N4.html"></a>
+                            <a id="lien-header-4" title ="Kanjis pour le JLPT" class="lien-header ui-corner-all" href="../caracteres/kanjis-jlpt.html#ui-tabs-3"></a>
+                            <a id="lien-header-5" title ="Hiraganas" class="lien-header ui-corner-all" href="../caracteres/hiraganas.html"></a>
+                            <a id="lien-header-6" title ="Examen du JLPT" class="lien-header ui-corner-all" href="../autres/examen-jlpt.html"></a>
+                            <a id="lien-header-7" title ="Test de kanjis pour le JLPT N5" class="lien-header ui-corner-all" href="kanjis-jlpt-N5.html"></a>
+                            <a id="lien-header-8" title ="Liens divers"  class="lien-header ui-corner-all" href="../autres/liens.html"></a>
+                            <a id="lien-header-9" title ="Conjugaison japonaise"  class="lien-header ui-corner-all" href="../grammaire/conjugaison.html"></a>
+                            <a id="lien-header-10" title ="Vocabulaire du JLPT"  class="lien-header ui-corner-all" href="../vocabulaire/jlpt.html"></a>
+                            <a id="lien-header-11" title ="Katakanas"  class="lien-header ui-corner-all" href="../caracteres/katakanas.html"></a>
+                        </div>
+                    <div id="logo"><a id="index-site" title="Index du site" href="../index-2.html"> </a></div>
+                    <div id="mail"><a id="contact-mail" title="Contact" href="../autres/contact.html"></a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="page-middle">
+        <div class="page-middle-1">
+            <div class="wrapper">
+                <div id="middle">
+                    <div id="left">
+                        <div id="accordion">
+
+                            <div>
+                                <h3><a href="#">Accueil | ホームページ</a></h3>
+                                <ul class="nav_links">
+                                    <li>
+                                        <a href="../index-2.html">Présentation | 紹介</a>
+                                    </li>
+                                    <li>
+                                        <a href="../autres/actualites.html">Actualités | ニュース</a>
+                                    </li>
+                                    <li>
+                                        <a href="../autres/examen-jlpt.html">JLPT | 日本語能力試験</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div>
+                                <h3><a href="#">Vocabulaire | 語彙</a></h3>
+                                <ul class="nav_links">
+                                    <li>
+                                        <a href="../vocabulaire/jlpt.html">JLPT | 日本語能力試験</a>
+                                    </li>
+                                    <li>
+                                        <a href="../vocabulaire/categories.html">Catégories | カテゴリー</a>
+                                    </li>
+                                    <li>
+                                        <a href="../vocabulaire/themes.html">Thèmes | 類題</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div>
+                                <h3><a href="#">Grammaire | 文法</a></h3>
+                                <ul class="nav_links">
+                                    <li>
+                                        <a href="../grammaire/jlpt.html">JLPT | 日本語能力試験</a>
+                                    </li>
+                                    <li>
+                                        <a href="../grammaire/conjugaison.html">Conjugaison | 活用</a>
+                                    </li>
+                                    <li>
+                                        <a href="../grammaire/index.html">Index | 索引</a>
+                                    </li>
+                                    <li>
+                                        <a href="../grammaire/categories.html">Catégories | カテゴリー</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div>
+                                <h3><a href="#">Caractères | 字</a></h3>
+                                <ul class="nav_links">
+                                    <li>
+                                        <a href="../caracteres/hiraganas.html">Hiraganas | 平仮名</a>
+                                    </li>
+                                    <li>
+                                        <a href="../caracteres/katakanas.html">Katakanas | 片仮名</a>
+                                    </li>
+                                    <li>
+                                        <a href="../caracteres/kanjis.html">Kanjis | 漢字</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div>
+                                <h3><a href="#">Chaque jour | 毎日</a></h3>
+                                <ul class="nav_links">
+                                    <li>
+                                        <a href="../chaque-jour/mots-jour-jlpt.html">10 mots | 単語</a>
+                                    </li>
+                                    <li>
+                                        <a href="../chaque-jour/kanjis-jour-jlpt.html">3 kanjis | 漢字</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div>
+                                <h3><a href="#">Exercices | 練習</a></h3>
+                                <ul class="nav_links">
+                                    <li>
+                                        <a href="vocabulaire-jlpt.html">Vocabulaire | 語彙</a>
+                                    </li>
+                                    <li>
+                                        <a href="kanjis-jlpt.html">Kanjis | 漢字</a>
+                                    </li>
+                                    <li>
+                                        <a href="kanas.html">Kanas | 仮名</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div>
+                                <h3><a href="#">Autre | その他</a></h3>
+                                <ul class="nav_links">
+                                    <li>
+                                        <a href="../autres/contact.html">Contact | 連絡</a>
+                                    </li>
+                                    <li>
+                                        <a href="../autres/liens.html">Liens | リンク集</a>
+                                    </li>
+                                    <li>
+                                        <a href="../autres/statistiques.html">Statistiques | 統計</a>
+                                    </li>
+                                    <li>
+                                        <a href="../autres/telechargement.html">Fichiers | ダウンロード</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+
+                        </div>
+                    </div>
+        <div id="main">
+
+            <div id="breadcrumbs" class="breadCrumb module">
+                <ul>
+                    <li>
+                        <a href="../index-2.html">Home</a>
+                    </li>
+                    <li>
+                        Exercices
+                    </li>
+                    <li>
+                        <a href="kanas.html">Kanas</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div id="content">
+
+                <h1>Exercice sur les kanas</h1>
+
+
+                <h2>Explications</h2>
+                <p>
+                    Il suffit tout simplement de choisir le type de kanas sur lesquels on veut être interrogé.
+                    On choisit ensuite les sons pour ces kanas.
+                    Les mots apparaissent au hasard parmi votre sélection.<br /><br />
+                    Le moyen le plus rapide de répondre est d'indiquer le son du kana et d'utiliser la touche TAB puis ENTREE pour vérifier votre réponse et proposer un nouveau kana.
+                </p>
+
+                <h2>Choix du type de kana</h2>
+                <input type="radio" name="choix_kana" id="1" value="1" checked="checked"><label for="1">hiraganas</label>
+                <input type="radio" name="choix_kana" id="2" value="2"><label for="2">katakanas</label>
+                <input type="radio" name="choix_kana" id="3" value="3"><label for="3">les deux</label>
+
+                <h2>Choix des kanas</h2>
+
+                <div id="choix_kanas">
+                    <div id="kana_base">
+    <input id="base_0" class="toggle" name="base" type="checkbox"><label for="base_0">tous les sons de bases</label>
+    <input id="base_1" name="base" value="base_1" type="checkbox"><label for="base_1">あ・か・さ・た・な・は・は・ま・や・ら・わ</label>
+    <input id="base_2" name="base" value="base_2" type="checkbox"><label for="base_2">い・き・し・ち・に・ひ・み・り</label>
+    <input id="base_3" name="base" value="base_3" type="checkbox"><label for="base_3">う・く・す・つ・ぬ・ふ・む・ゆ・る</label>
+    <input id="base_4" name="base" value="base_4" type="checkbox"><label for="base_4">え・け・せ・て・ね・へ・め・れ</label>
+    <input id="base_5" name="base" value="base_5" type="checkbox"><label for="base_5">お・こ・そ・と・の・ほ・も・よ・ろ・を</label>
+    <input id="base_6" name="base" value="base_6" type="checkbox"><label for="base_6">ん</label>
+</div>
+
+<div id="kana_diacritique">
+    <input id="diacritique_0" class="toggle" name="diacritique" type="checkbox"><label for="diacritique_0">tous les kanas avec un diacritique</label>
+    <input id="diacritique_1" value="diacritique_1" name="diacritique" type="checkbox"><label for="diacritique_1">が・ざ・だ・ば・ぱ</label>
+    <input id="diacritique_2" value="diacritique_2" name="diacritique" type="checkbox"><label for="diacritique_2">ぎ・じ・ぢ・び・ぴ</label>
+    <input id="diacritique_3" value="diacritique_3" name="diacritique" type="checkbox"><label for="diacritique_3">ぐ・ず・づ・ぶ・ぷ</label>
+    <input id="diacritique_4" value="diacritique_4" name="diacritique" type="checkbox"><label for="diacritique_4">げ・ぜ・で・べ・ぺ</label>
+    <input id="diacritique_5" value="diacritique_5" name="diacritique" type="checkbox"><label for="diacritique_5">ご・ぞ・ど・ぼ・ぽ</label>
+</div>
+
+<br /><br />
+
+<div id="kana_diphtongue">
+    <input id="diphtongue_0" class="toggle" name="diphtongue" type="checkbox"><label for="diphtongue_0">toutes les diphtongues</label>
+    <input id="diphtongue_1" value="diphtongue_1" name="diphtongue" type="checkbox"><label for="diphtongue_1">きゃ・ぎゃ・しゃ・じゃ・ちゃ・にゃ・ひゃ・びゃ・ぴゃ・みゃ・りゃ</label>
+    <input id="diphtongue_2" value="diphtongue_2" name="diphtongue" type="checkbox"><label for="diphtongue_2">きゅ・ぎゅ・しゅ・じゅ・ちゅ・にゅ・ひゅ・びゅ・ぴゅ・みゅ・りゅ</label>
+    <input id="diphtongue_3" value="diphtongue_3" name="diphtongue" type="checkbox"><label for="diphtongue_3">きょ・ぎょ・しょ・じょ・ちょ・にょ・ひょ・びょ・ぴょ・みょ・りょ</label>
+</div>
+                </div>
+
+
+                <br />
+                <hr class="separation" />
+
+                <h2>Se tester</h2>
+
+                <div id="instructions_quizz_kana">
+                    Entrez votre réponse :
+                    <input type='text' id="reponse-kana" size="3" maxlength="3" />
+                    <button id="verifier-kana" class="bouton-recherche-kanji ui-corner-all">Nouveau/Vérifier</button>
+                </div>
+
+                <br />
+                <div id="donnees-kana-quizz"></div>
+                <div id="reponse-kana-quizz"></div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+</div>
+</div>
+
+<div id="page-footer">
+    <div class="wrapper">
+        <div id="footer">
+                    <p id="text-footer">
+                        2009-2015 | JLPT-Go! JLPT-語 | Dernière mise à jour : 11 octobre 2015<br />
+                        Testé et optimisé pour les navigateurs suivants : IE > 7 <img src="http://jlptgo.com/images/ie.png" alt="IE 7 minimum"/>, Chrome > 9.0 <img src="http://jlptgo.com/images/chrome.png" alt="Chrome"/>, Opera > 11 <img src="http://jlptgo.com/images/opera.png" alt="Opéra"/>, Firefox > 3.6 <img src="http://jlptgo.com/images/firefox.png" alt="Firefox"/>
+                    </p>
+            <a href="#back-top" id="back-top"></a>
+        </div>
+    </div>
+</div>
+
+</body>
+
+<!-- Mirrored from jlptgo.com/exercices/kanas.php by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 05 Jan 2021 14:34:26 GMT -->
+</html>
